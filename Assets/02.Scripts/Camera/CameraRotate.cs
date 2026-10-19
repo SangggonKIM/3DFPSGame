@@ -12,8 +12,10 @@ public class CameraRotate : MonoBehaviour
     {
         if (!Input.GetMouseButton(1)) return;
         // 1. 마우스 입력을 받는다.
-        float mouseX = Input.GetAxis("Mouse X");
-        float mouseY = Input.GetAxis("Mouse Y");
+        var mouseX = Input.GetAxis("Mouse X");
+        var mouseY = Input.GetAxis("Mouse Y");
+
+        GameLogger.Log($"mouseX: {mouseX}, mouseY: {mouseY}");
 
         // 2. 마우스 입력 만큼 회전값을 누적한다.
         _accumulationX += mouseX * _rotationSpeed * Time.deltaTime;
