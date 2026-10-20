@@ -8,6 +8,8 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] private float _dashSpeed = 12f;
     [SerializeField] private CharacterController _characterController;
     [SerializeField] private float _jumpPower = 10f;
+    [SerializeField] private int _jumpCountLimit = 2;
+    private int _jumpCount = 0;
     private float _currentSpeed = 0f;
 
     private bool _isJumping;
@@ -44,6 +46,7 @@ public class PlayerMove : MonoBehaviour
         if (_isJumping && _characterController.isGrounded)
         {
             _isJumping = false;
+            _jumpCount = 0;
         }
 
         if (Input.GetKey(KeyCode.LeftShift))
@@ -59,7 +62,11 @@ public class PlayerMove : MonoBehaviour
         if (Input.GetButtonDown("Jump") && !_isJumping) // 중재자 패턴
         {
             _yVelocity = _jumpPower;
-            _isJumping = true;
+            _jumpCount++;
+            if (_jumpCount == _jumpCountLimit)
+            {
+                _isJumping = true;
+            }
         }
 
         // 5. 속도를 구한다.
