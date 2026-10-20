@@ -5,8 +5,10 @@ public class PlayerMove : MonoBehaviour
     private const float Gravity = -20f;
 
     [SerializeField] private float _moveSpeed = 7f;
+    [SerializeField] private float _dashSpeed = 12f;
     [SerializeField] private CharacterController _characterController;
     [SerializeField] private float _jumpPower = 10f;
+    private float _currentSpeed = 0f;
 
     private bool _isJumping;
     private float _yVelocity; // 위아래 속도, 매 프레임마다 중력 가속도가 붙는다.
@@ -44,6 +46,15 @@ public class PlayerMove : MonoBehaviour
             _isJumping = false;
         }
 
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            _currentSpeed = _dashSpeed;
+        }
+        else
+        {
+            _currentSpeed = _moveSpeed;
+        }
+
         // 4. 만약에 점프키를 누르면 && 점프중이 아니라면 ... 점프를한다.
         if (Input.GetButtonDown("Jump") && !_isJumping) // 중재자 패턴
         {
@@ -52,7 +63,7 @@ public class PlayerMove : MonoBehaviour
         }
 
         // 5. 속도를 구한다.
-        var velocity = direction * _moveSpeed;
+        var velocity = direction * _currentSpeed;
         velocity.y = _yVelocity;
 
         // 6. 속도(방향과 속력)에 따라 이동한다.
