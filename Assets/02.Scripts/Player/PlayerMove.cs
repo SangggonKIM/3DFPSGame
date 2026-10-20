@@ -6,7 +6,9 @@ public class PlayerMove : MonoBehaviour
 
     [SerializeField] private float _moveSpeed = 7f;
     [SerializeField] private CharacterController _characterController;
-    [SerializeField] private float _jumpPower = 8f;
+    [SerializeField] private float _jumpPower = 10f;
+
+    private bool _isJumping;
     private float _yVelocity; // 위아래 속도, 매 프레임마다 중력 가속도가 붙는다.
 
     private void Awake()
@@ -32,11 +34,21 @@ public class PlayerMove : MonoBehaviour
         {
             _yVelocity += Gravity * Time.deltaTime;
         }
+        else
+        {
+            _yVelocity = 0f;
+        }
 
-        // 4. 만약에 점프키를 누르면... 점프를한다.
-        if (Input.GetButtonDown("Jump") && _characterController.isGrounded) // 중재자 패턴
+        if (_isJumping && _characterController.isGrounded)
+        {
+            _isJumping = false;
+        }
+
+        // 4. 만약에 점프키를 누르면 && 점프중이 아니라면 ... 점프를한다.
+        if (Input.GetButtonDown("Jump") && !_isJumping) // 중재자 패턴
         {
             _yVelocity = _jumpPower;
+            _isJumping = true;
         }
 
         // 5. 속도를 구한다.
