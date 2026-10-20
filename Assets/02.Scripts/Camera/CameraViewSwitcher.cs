@@ -28,40 +28,28 @@ public class CameraViewSwitcher : MonoBehaviour
     // 1인칭: 눈 위치로 이동하고, 설정한 방향에 마우스 상하 회전을 더합니다.
     // 최종 상하 각도는 -90~90도로 제한하며, 좌우 회전은 PlayerRotate를 따릅니다.
     [Header("1인칭")]
-
-    [SerializeField] private ViewSettings _firstPerson = new(
-        Vector3.zero, Vector3.zero, true);
+    [SerializeField] private ViewSettings _firstPerson = new(Vector3.zero, Vector3.zero, true);
 
     // 3인칭: 눈 위치보다 위쪽/뒤쪽에 배치하고, 약간 아래를 바라봅니다.
     [Header("3인칭")]
-
-    [SerializeField] private ViewSettings _thirdPerson = new(
-        new Vector3(0f, 1f, -4f), new Vector3(10f, 0f, 0f), true);
+    [SerializeField] private ViewSettings _thirdPerson = new(new Vector3(0f, 1f, -4f), new Vector3(10f, 0f, 0f), true);
 
     // 숄더뷰: 오른쪽 어깨 뒤로 이동하고, 플레이어 앞쪽을 바라봅니다.
     [Header("숄더뷰")]
-
-    [SerializeField] private ViewSettings _shoulder = new(
-        new Vector3(0.7f, 0.3f, -2.5f), new Vector3(5f, 0f, 0f), true);
+    [SerializeField] private ViewSettings _shoulder = new(new Vector3(0.7f, 0.3f, -2.5f), new Vector3(5f, 0f, 0f), true);
 
     // 쿼터뷰: 대각선 위쪽으로 이동하고, 눈 위치를 향해 비스듬히 내려다봅니다.
     // 기본값에서는 플레이어가 회전해도 카메라의 월드 기준 방향은 유지됩니다.
     [Header("쿼터뷰")]
-
-    [SerializeField] private ViewSettings _quarter = new(
-        new Vector3(6f, 6f, -6f), new Vector3(35.264f, -45f, 0f), false);
+    [SerializeField] private ViewSettings _quarter = new(new Vector3(6f, 6f, -6f), new Vector3(35.264f, -45f, 0f), false);
 
     // 탑다운: 눈 위치 바로 위로 이동하고, X축을 90도 회전해 아래를 봅니다.
     [Header("탑다운")]
-
-    [SerializeField] private ViewSettings _topDown = new(
-        new Vector3(0f, 10f, 0f), new Vector3(90f, 0f, 0f), false);
+    [SerializeField] private ViewSettings _topDown = new(new Vector3(0f, 10f, 0f), new Vector3(90f, 0f, 0f), false);
 
     // 사이드뷰: 월드 +X 방향으로 이동하고, -X 방향으로 플레이어 옆면을 봅니다.
     [Header("사이드뷰")]
-
-    [SerializeField] private ViewSettings _side = new(
-        new Vector3(8f, 0f, 0f), new Vector3(0f, -90f, 0f), false);
+    [SerializeField] private ViewSettings _side = new(new Vector3(8f, 0f, 0f), new Vector3(0f, -90f, 0f), false);
     private CameraFollow _cameraFollow;
 
     private CameraRotate _fpsCameraRotate;
@@ -170,13 +158,16 @@ public class CameraViewSwitcher : MonoBehaviour
     [Serializable]
     private class ViewSettings
     {
-        [Tooltip("CameraPosition 기준 위치 오프셋. X: 오른쪽, Y: 위, Z: 앞")][SerializeField]
+        [Tooltip("CameraPosition 기준 위치 오프셋. X: 오른쪽, Y: 위, Z: 앞")]
+        [SerializeField]
         private Vector3 _positionOffset;
 
-        [Tooltip("카메라 회전 각도. X: 상하, Y: 좌우, Z: 기울기")][SerializeField]
+        [Tooltip("카메라 회전 각도. X: 상하, Y: 좌우, Z: 기울기")]
+        [SerializeField]
         private Vector3 _eulerAngles;
 
-        [Tooltip("켜면 위치와 방향이 Player의 Y축 회전을 따르고, 끄면 월드 축을 기준으로 합니다.")][SerializeField]
+        [Tooltip("켜면 위치와 방향이 Player의 Y축 회전을 따르고, 끄면 월드 축을 기준으로 합니다.")]
+        [SerializeField]
         private bool _followPlayerYaw;
 
         public ViewSettings(Vector3 positionOffset, Vector3 eulerAngles, bool followPlayerYaw)

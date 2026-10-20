@@ -36,7 +36,7 @@ public class PlayerMove : MonoBehaviour
         }
         else
         {
-            _yVelocity = 0f;
+            _yVelocity = -2f;
         }
 
         if (_isJumping && _characterController.isGrounded)
