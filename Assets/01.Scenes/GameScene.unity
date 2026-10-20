@@ -640,6 +640,7 @@ GameObject:
   - component: {fileID: 330585547}
   - component: {fileID: 330585548}
   - component: {fileID: 330585549}
+  - component: {fileID: 330585550}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -791,6 +792,46 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraFollow
   _target: {fileID: 348971311}
+--- !u!114 &330585550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 330585543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b77b5a39288ac84d8ae2c0e9697df2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CameraViewSwitcher
+  _player: {fileID: 17943313}
+  _cameraPosition: {fileID: 348971311}
+  _switchKey: 118
+  _mouseSensitivity: 2
+  _firstPerson:
+    _positionOffset: {x: 0, y: 0, z: 0}
+    _eulerAngles: {x: 0, y: 0, z: 0}
+    _followPlayerYaw: 1
+  _thirdPerson:
+    _positionOffset: {x: 0, y: 1, z: -4}
+    _eulerAngles: {x: 10, y: 0, z: 0}
+    _followPlayerYaw: 1
+  _shoulder:
+    _positionOffset: {x: 0.7, y: 0.3, z: -2.5}
+    _eulerAngles: {x: 5, y: 0, z: 0}
+    _followPlayerYaw: 1
+  _quarter:
+    _positionOffset: {x: 6, y: 6, z: -6}
+    _eulerAngles: {x: 35.264, y: -45, z: 0}
+    _followPlayerYaw: 0
+  _topDown:
+    _positionOffset: {x: 0, y: 10, z: 0}
+    _eulerAngles: {x: 90, y: 0, z: 0}
+    _followPlayerYaw: 0
+  _side:
+    _positionOffset: {x: 8, y: 0, z: 0}
+    _eulerAngles: {x: 0, y: -90, z: 0}
+    _followPlayerYaw: 0
 --- !u!1 &348971310
 GameObject:
   m_ObjectHideFlags: 0
