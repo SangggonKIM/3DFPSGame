@@ -7,6 +7,7 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] private float _moveSpeed = 7f;
     [SerializeField] private CharacterController _characterController;
     [SerializeField] private float _jumpPower = 10f;
+    [SerializeField] private float _sprintSpeed = 12f;
 
     private bool _isJumping;
     private float _yVelocity; // 위아래 속도, 매 프레임마다 중력 가속도가 붙는다.
@@ -36,7 +37,7 @@ public class PlayerMove : MonoBehaviour
         }
         else
         {
-            _yVelocity = -2f;
+            _yVelocity = -1f;
         }
 
         if (_isJumping && _characterController.isGrounded)
@@ -52,7 +53,8 @@ public class PlayerMove : MonoBehaviour
         }
 
         // 5. 속도를 구한다.
-        var velocity = direction * _moveSpeed;
+        float currentSpeed = Input.GetButton("Sprint") ? _sprintSpeed : _moveSpeed;
+        var velocity = direction * currentSpeed;
         velocity.y = _yVelocity;
 
         // 6. 속도(방향과 속력)에 따라 이동한다.
