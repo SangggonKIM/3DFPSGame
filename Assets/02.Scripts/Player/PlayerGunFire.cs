@@ -10,7 +10,7 @@ public class PlayerGunFire : MonoBehaviour
     [SerializeField] private float _range = 100f; // 사거리
     [SerializeField] private float _damage = 10f; // 공격력
     [SerializeField] private float _fireInterval = 0.1f; // 발사 속도
-    private float _fireTimer = 0f;
+    private float _fireTimer;
 
     private void Update()
     {
@@ -28,19 +28,19 @@ public class PlayerGunFire : MonoBehaviour
     private void Shoot()
     {
         // 2. 레이(광선)를 생성하고 발사될 위치와 진행 방향 설정하기
-        Transform cameraTransform = Camera.main.transform;
-        Ray ray = new Ray(cameraTransform.position, cameraTransform.forward);
+        var cameraTransform = Camera.main.transform;
+        var ray = new Ray(cameraTransform.position, cameraTransform.forward);
 
         // 3. 레이가 부딛힌 대상의 정보를 저장할 변수 생성하기
-        RaycastHit hitInfo = new RaycastHit();
+        var hitInfo = new RaycastHit();
 
         // 4. 레이를 발사하고, 만일 부딛힌 물체가 있다면 이펙트 표시하기
-        bool isHit = Physics.Raycast(ray, out hitInfo, _range);
+        var isHit = Physics.Raycast(ray, out hitInfo, _range);
         if (isHit)
         {
             // Debug.Log($"{hitInfo.collider.name}이 총알을 맞았다. 데미지: {_damage}");
 
-            ParticleSystem effect = Instantiate(_hitEffectPrefab);
+            var effect = Instantiate(_hitEffectPrefab);
             effect.transform.position = hitInfo.point; // 맞은 자리
             effect.transform.forward = hitInfo.normal; // 수직 위치로 회전
             effect.Play();
