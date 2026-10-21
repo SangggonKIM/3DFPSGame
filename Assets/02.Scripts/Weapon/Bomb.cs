@@ -1,32 +1,32 @@
+using Lean.Pool;
 using UnityEngine;
 
-// 무언가에 부딛히면 폭발 이펙트를 남기고 사라지는 폭탄
-[RequireComponent(typeof(Rigidbody))]
-public class Bomb : MonoBehaviour
+// 충돌하면 폭발 이펙트를 남기고 LeanPool에 반환되는 폭탄입니다.
+[RequireComponent(typeof(Rigidbody), typeof(LeanPooledRigidbody))]
+public class Bomb : MonoBehaviour, IPoolable
 {
     [SerializeField] private ParticleSystem _explosionEffectPrefab;
 
-
     private Rigidbody _rigidbody;
-    public BombPool Owner { get; private set; }
     public bool IsInUse { get; private set; }
 
-    internal void Initialize(BombPool owner)
+    private void Awake()
     {
-        Owner = owner;
         _rigidbody = GetComponent<Rigidbody>();
     }
 
-    internal void Activate(Vector3 position, Quaternion rotation)
+    // 풀의 Notification = IPoolable 설정으로 호출됩니다.
+    public void OnSpawn()
     {
-        transform.SetPositionAndRotation(position, rotation);
-        _rigidbody.position = position;
-        _rigidbody.rotation = rotation;
-        _rigidbody.linearVelocity = Vector3.zero;
-        _rigidbody.angularVelocity = Vector3.zero;
+        if (_rigidbody == null) _rigidbody = GetComponent<Rigidbody>();
         IsInUse = true;
-        gameObject.SetActive(true);
         _rigidbody.WakeUp();
+    }
+
+    public void OnDespawn()
+    {
+        IsInUse = false;
+        // 이동·회전 속도 초기화는 LeanPooledRigidbody가 처리합니다.
     }
 
     public void Launch(Vector3 impulse)
@@ -34,21 +34,12 @@ public class Bomb : MonoBehaviour
         if (IsInUse) _rigidbody.AddForce(impulse, ForceMode.Impulse);
     }
 
-    internal void Deactivate()
-    {
-        IsInUse = false;
-        _rigidbody.linearVelocity = Vector3.zero;
-        _rigidbody.angularVelocity = Vector3.zero;
-        _rigidbody.Sleep();
-        gameObject.SetActive(false);
-    }
-
-    // 다른 콜라이더와 부딛힌 순간 실행되는 메서드
     private void OnCollisionEnter(Collision collision)
     {
         if (!IsInUse) return;
+        IsInUse = false; // 같은 폭탄의 중복 충돌 처리를 방지합니다.
         Vector3 explosionPosition = transform.position;
-        Owner.ReturnBomb(this);
+        LeanPool.Despawn(gameObject);
 
         if (_explosionEffectPrefab != null)
         {

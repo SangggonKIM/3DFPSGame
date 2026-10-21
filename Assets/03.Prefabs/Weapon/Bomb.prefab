@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8027570549642370855}
   - component: {fileID: 8098493458398672487}
   - component: {fileID: 6440146680186206307}
+  - component: {fileID: 2139000010}
   m_Layer: 6
   m_Name: Bomb
   m_TagString: Untagged
@@ -127,6 +128,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Bomb
   _explosionEffectPrefab: {fileID: 19800006, guid: 8a4aceaf2957c044480166b429f4c7d0, type: 3}
+--- !u!114 &2139000010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9209514447222365373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a47bac80a21a18b4b91b990df1cb4e7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!54 &6440146680186206307
 Rigidbody:
   m_ObjectHideFlags: 0

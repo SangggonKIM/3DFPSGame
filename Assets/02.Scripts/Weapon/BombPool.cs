@@ -1,36 +1,14 @@
-using System.Collections.Generic;
+using Lean.Pool;
 using UnityEngine;
 
+[RequireComponent(typeof(LeanGameObjectPool))]
 public class BombPool : MonoBehaviour
 {
-    [SerializeField] private Bomb _bombPrefab;
-    [SerializeField, Min(1)] private int _poolSize = 10;
-
-    private readonly Queue<Bomb> _availableBombs = new Queue<Bomb>();
-    private bool _initialized;
+    private LeanGameObjectPool _pool;
 
     private void Awake()
     {
-        Initialize();
-    }
-
-    private void Initialize()
-    {
-        if (_initialized) return;
-        if (_bombPrefab == null)
-        {
-            Debug.LogError("BombPool에 Bomb Prefab을 연결해주세요.", this);
-            return;
-        }
-
-        _initialized = true;
-        for (int i = 0; i < Mathf.Max(1, _poolSize); i++)
-        {
-            Bomb bomb = Instantiate(_bombPrefab, transform);
-            bomb.Initialize(this);
-            bomb.gameObject.SetActive(false);
-            _availableBombs.Enqueue(bomb);
-        }
+        _pool = GetComponent<LeanGameObjectPool>();
     }
 
     public Bomb GetBomb()
@@ -40,27 +18,22 @@ public class BombPool : MonoBehaviour
 
     public Bomb GetBomb(Vector3 position, Quaternion rotation)
     {
-        // 다른 컴포넌트의 Awake가 먼저 실행되어도 초기화를 보장합니다.
-        Initialize();
-        if (!_initialized || !isActiveAndEnabled) return null;
-
-        while (_availableBombs.Count > 0)
+        if (_pool == null) _pool = GetComponent<LeanGameObjectPool>();
+        if (!isActiveAndEnabled || !_pool.isActiveAndEnabled) return null;
+        if (_pool.Prefab == null || !_pool.Prefab.TryGetComponent<Bomb>(out var prefab))
         {
-            Bomb bomb = _availableBombs.Dequeue();
-            if (bomb == null) continue;
-            bomb.Activate(position, rotation);
-            return bomb;
+            Debug.LogError("Lean Game Object Pool의 Prefab에 Bomb 프리팹을 연결해주세요.", this);
+            return null;
         }
 
-        // 풀이 비었으면 추가 생성하지 않고 이번 발사를 취소합니다.
-        return null;
+        // Preload, Capacity 등 수량 설정은 LeanGameObjectPool에서 관리합니다.
+        // Capacity에 도달하고 Recycle이 꺼져 있으면 null을 반환합니다.
+        return LeanPool.Spawn(prefab, position, rotation);
     }
 
     public void ReturnBomb(Bomb bomb)
     {
-        // 다른 풀의 폭탄이나 이미 반환된 폭탄이 중복 등록되지 않게 합니다.
-        if (bomb == null || bomb.Owner != this || !bomb.IsInUse) return;
-        bomb.Deactivate();
-        _availableBombs.Enqueue(bomb);
+        if (bomb == null || !bomb.IsInUse) return;
+        LeanPool.Despawn(bomb.gameObject);
     }
 }
