@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 // 마우스 왼쪽 버튼을 누르면 바라보는 방향으로 총알을 발사하고 싶다.
@@ -13,10 +14,10 @@ public class PlayerGunFire : MonoBehaviour
     [SerializeField] private float _damage = 10f; // 공격력
     [SerializeField] private float _fireInterval = 0.1f; // 발사 속도
 
+    private int _bulletCount;
     private float _fireTimer;
-    private int _bulletCount = 0;
-    private bool _isReloading = false;
-    private float _reloadingTimer = 0f;
+    private bool _isReloading;
+
 
     private void Start()
     {
@@ -37,29 +38,20 @@ public class PlayerGunFire : MonoBehaviour
         }
 
         // 2. R키 누르면 총알 재장전 시작
-        if (Input.GetButtonDown("Reload") && _isReloading == false)
-        {
-            _isReloading = true;
-            _reloadingTimer = 0f;
-        }
-
-        // 3. 재장전 중
-        if (_isReloading)
-        {
-            _reloadingTimer += Time.deltaTime;
-            Debug.Log($"재장전 중: {_reloadingTimer}");
-            if (_reloadingTimer >= _reloadingTime) // 재장전 시간이 지났다면
-            {
-                _isReloading = false;
-                Reloading(); // 재장전 완료!
-                Debug.Log($"재장전 완료");
-            }
-        }
+        if (Input.GetButtonDown("Reload") && !_isReloading) StartCoroutine(Reloading_Coroutine());
     }
 
-    private void Reloading()
+    private IEnumerator Reloading_Coroutine()
     {
+        Debug.Log("재장전 시작!");
+        _isReloading = true;
+
+        yield return new WaitForSeconds(_reloadingTime);
+
         _bulletCount = _maxBulletCount;
+        _isReloading = false;
+
+        Debug.Log("재장전 완료!");
     }
 
     private void Shoot()
