@@ -4,22 +4,47 @@ using UnityEngine;
 public class PlayerBombFire : MonoBehaviour
 {
     [SerializeField] private Transform _firePoint;
-    [SerializeField] private Bomb _bombPrefab;
-    [SerializeField] private float _throwPower = 15f;
+    [SerializeField] private BombPool _bombPool;
+    [SerializeField] private float _firstPower = 15f;
+    [SerializeField] private int _maxCount = 10;
+
+    private float _additionalForce = 0f;
+    private int _bombCount;
+    private float _throwPower;
+
+    private void Awake()
+    {
+        _bombCount = _maxCount;
+        _throwPower = _firstPower;
+    }
 
     private void Update()
     {
         // 1. 마우스 오른쪽 버튼 입력 받기
-        if (Input.GetButtonDown("Fire2")) Shoot();
+        if (Input.GetButton("Fire2"))
+        {
+            _additionalForce += 1f * Time.deltaTime;
+            _throwPower = _firstPower + _additionalForce;
+        }
+
+        if (Input.GetButtonUp("Fire2"))
+        {
+            if (_bombCount > 0 && Shoot()) _bombCount--;
+            _additionalForce = 0f;
+            _throwPower = _firstPower;
+        }
     }
 
-    private void Shoot()
+    private bool Shoot()
     {
-        // 2. 발사 위치에서 수류탄 생성하기
-        var bomb = Instantiate(_bombPrefab, _firePoint.position, Quaternion.identity);
+        Camera viewCamera = Camera.main;
+        if (_bombPool == null || _firePoint == null || viewCamera == null) return false;
 
-        // 3. 생성된 수류탄을 시선 방향으로 던지기
-        var rigidbody = bomb.GetComponent<Rigidbody>();
-        rigidbody.AddForce(Camera.main.transform.forward * _throwPower, ForceMode.Impulse);
+        // 미리 만들어 둔 폭탄을 발사 위치로 옮긴 후 활성화합니다.
+        Bomb bomb = _bombPool.GetBomb(_firePoint.position, Quaternion.identity);
+        if (bomb == null) return false;
+
+        bomb.Launch(viewCamera.transform.forward * _throwPower);
+        return true;
     }
 }

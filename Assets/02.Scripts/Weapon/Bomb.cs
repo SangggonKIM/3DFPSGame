@@ -1,18 +1,59 @@
 using UnityEngine;
 
 // 무언가에 부딛히면 폭발 이펙트를 남기고 사라지는 폭탄
+[RequireComponent(typeof(Rigidbody))]
 public class Bomb : MonoBehaviour
 {
     [SerializeField] private ParticleSystem _explosionEffectPrefab;
 
 
+    private Rigidbody _rigidbody;
+    public BombPool Owner { get; private set; }
+    public bool IsInUse { get; private set; }
+
+    internal void Initialize(BombPool owner)
+    {
+        Owner = owner;
+        _rigidbody = GetComponent<Rigidbody>();
+    }
+
+    internal void Activate(Vector3 position, Quaternion rotation)
+    {
+        transform.SetPositionAndRotation(position, rotation);
+        _rigidbody.position = position;
+        _rigidbody.rotation = rotation;
+        _rigidbody.linearVelocity = Vector3.zero;
+        _rigidbody.angularVelocity = Vector3.zero;
+        IsInUse = true;
+        gameObject.SetActive(true);
+        _rigidbody.WakeUp();
+    }
+
+    public void Launch(Vector3 impulse)
+    {
+        if (IsInUse) _rigidbody.AddForce(impulse, ForceMode.Impulse);
+    }
+
+    internal void Deactivate()
+    {
+        IsInUse = false;
+        _rigidbody.linearVelocity = Vector3.zero;
+        _rigidbody.angularVelocity = Vector3.zero;
+        _rigidbody.Sleep();
+        gameObject.SetActive(false);
+    }
+
     // 다른 콜라이더와 부딛힌 순간 실행되는 메서드
     private void OnCollisionEnter(Collision collision)
     {
-        var effect = Instantiate(_explosionEffectPrefab, transform.position, Quaternion.identity);
-        effect.Play();
+        if (!IsInUse) return;
+        Vector3 explosionPosition = transform.position;
+        Owner.ReturnBomb(this);
 
-        // Todo. 오브젝트 풀링 적용
-        Destroy(gameObject);
+        if (_explosionEffectPrefab != null)
+        {
+            var effect = Instantiate(_explosionEffectPrefab, explosionPosition, Quaternion.identity);
+            effect.Play();
+        }
     }
 }
