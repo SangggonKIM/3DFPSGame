@@ -136,7 +136,6 @@ public class Zombie : MonoBehaviour
         {
             Debug.Log($"{_state} -> Trace");
             _state = ZombieState.Trace;
-            Trace();
             return;
         }
 
@@ -158,6 +157,7 @@ public class Zombie : MonoBehaviour
         {
             transform.forward = velocity.normalized;
         }
+
         _controller.SimpleMove(velocity);
     }
 
