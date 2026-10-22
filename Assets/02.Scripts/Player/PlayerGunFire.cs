@@ -80,10 +80,17 @@ public class PlayerGunFire : MonoBehaviour
         {
             // Debug.Log($"{hitInfo.collider.name}이 총알을 맞았다. 데미지: {_damage}");
 
+            // 맞은 자리에 총알 자국 이펙트 만들기
             var effect = Instantiate(_hitEffectPrefab);
             effect.transform.position = hitInfo.point; // 맞은 자리
             effect.transform.forward = hitInfo.normal; // 수직 위치로 회전
             effect.Play();
+
+            // 맞은 대상이 좀비라면 TakeDamage
+            if (hitInfo.collider.TryGetComponent(out Zombie zombie))
+            {
+                zombie.TakeDamage(_damage);
+            }
         }
     }
 }
