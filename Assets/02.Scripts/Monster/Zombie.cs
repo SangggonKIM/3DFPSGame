@@ -16,7 +16,8 @@ public enum ZombieState
     Comeback, // 복귀: 처음 자리로 돌아간다.
     Attack, // 공격: 일정 시간마다 플레이어를 때린다.
     Hit, // 피격: 공격(총알, 폭탄)을 받아 잠깐 멈칫한다.
-    Death // 죽음: 쓰러지고 잠시 뒤 사라진다.
+    Death, // 죽음: 쓰러지고 잠시 뒤 사라진다.
+    Patrol // 순찰: 처음 자리에서 좌우 5유닛을 왕복한다.
 }
 
 public class Zombie : MonoBehaviour
@@ -34,9 +35,11 @@ public class Zombie : MonoBehaviour
     private Vector3 _startPosition;
     private GameObject _player;
     private float _attackTimer = 0f;
+    private const float PatrolDistance = 5f;
+    private float _patrolTimer = 0f;
 
 
-    private ZombieState _state = ZombieState.Idle;
+    private ZombieState _state = ZombieState.Patrol;
 
     private void Start()
     {
@@ -53,6 +56,9 @@ public class Zombie : MonoBehaviour
         {
             case ZombieState.Idle:
                 Idle();
+                break;
+            case ZombieState.Patrol:
+                Patrol();
                 break;
             case ZombieState.Trace:
                 Trace();
@@ -122,6 +128,39 @@ public class Zombie : MonoBehaviour
         }
     }
 
+    private void Patrol()
+    {
+        // 순찰 중 플레이어를 발견하면 현재 위치에서 바로 추격한다.
+        if (_player != null &&
+            Vector3.Distance(transform.position, _player.transform.position) <= _detectDistance)
+        {
+            Debug.Log($"{_state} -> Trace");
+            _state = ZombieState.Trace;
+            Trace();
+            return;
+        }
+
+        if (Time.deltaTime <= 0f)
+        {
+            return;
+        }
+
+        _patrolTimer += Time.deltaTime;
+        // 중앙에서 오른쪽으로 출발하고, 양 끝에 도달하면 방향을 바꾼다.
+        float offset = Mathf.PingPong(_patrolTimer * _moveSpeed + PatrolDistance,
+            PatrolDistance * 2f) - PatrolDistance;
+        Vector3 targetPosition = _startPosition + Vector3.right * offset;
+        Vector3 movement = targetPosition - transform.position;
+        movement.y = 0f;
+
+        Vector3 velocity = Vector3.ClampMagnitude(movement / Time.deltaTime, _moveSpeed);
+        if (velocity.sqrMagnitude > 0.0001f)
+        {
+            transform.forward = velocity.normalized;
+        }
+        _controller.SimpleMove(velocity);
+    }
+
     // 추격: 플레이어를 쫓아간다.
     private void Trace()
     {
@@ -156,8 +195,9 @@ public class Zombie : MonoBehaviour
     {
         if (Vector3.Distance(transform.position, _startPosition) < 1f)
         {
-            Debug.Log($"{_state} -> Idle");
-            _state = ZombieState.Idle;
+            _patrolTimer = 0f;
+            Debug.Log($"{_state} -> Patrol");
+            _state = ZombieState.Patrol;
             return;
         }
 
