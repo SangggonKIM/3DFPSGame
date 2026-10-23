@@ -16,6 +16,6 @@ public class PlayerStats : MonoBehaviour
     private void LateUpdate()
     {
         _slider[0].value = _playerHealth.Health / _playerHealth.MaxHealth;
-        _slider[1].value = _playerMove.Stamina / _playerMove.MaxStaminaValue;
+        _slider[1].value = _playerMove.Stamina / PlayerMove.MaxStamina;
     }
 }

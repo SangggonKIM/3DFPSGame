@@ -4,7 +4,7 @@ public class PlayerMove : MonoBehaviour
 {
     private const float Gravity = -20f;
     private const int MaxJumps = 2;
-    private const float MaxStamina = 100f;
+    public const float MaxStamina = 100f;
 
     private bool _isJumping;
     private float _yVelocity; // 위아래 속도, 매 프레임마다 중력 가속도가 붙는다.
@@ -18,7 +18,6 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] private float _sprintCost = 10f;
     [SerializeField] private float _jumpCost = 20f;
 
-    public float MaxStaminaValue => MaxStamina;
     public float Stamina => _stamina;
 
     [Header("컴포넌트")]
