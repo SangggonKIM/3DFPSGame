@@ -6,11 +6,14 @@ public class ZombieHealthBar : MonoBehaviour
 {
     [SerializeField] private Slider _slider;
 
-    private Zombie _zombie;
+    [SerializeField] private Zombie _zombie;
 
     private void Awake()
     {
-        _zombie = GetComponent<Zombie>();
+        if (_zombie == null)
+        {
+            _zombie = GetComponentInParent<Zombie>();
+        }
     }
 
     private void LateUpdate()

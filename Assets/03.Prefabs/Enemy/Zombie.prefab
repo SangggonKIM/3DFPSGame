@@ -103,7 +103,6 @@ GameObject:
   - component: {fileID: 6098518047197587455}
   - component: {fileID: 8381374680673970669}
   - component: {fileID: 6749787322004156699}
-  - component: {fileID: -7305011510572722306}
   m_Layer: 9
   m_Name: Zombie
   m_TagString: Untagged
@@ -229,19 +228,6 @@ MonoBehaviour:
   _moveSpeed: 5
   _maxHealth: 30
   _bloodSprayPrefab: {fileID: 1000013355911406, guid: d32aa916f50cac94db11e6f19821a58f, type: 3}
---- !u!114 &-7305011510572722306
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3359796967333128098}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 215fd02076239a247812f9923ceb7188, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ZombieHealthBar
-  _slider: {fileID: 4973684120810331480}
 --- !u!1 &4830645347526883990
 GameObject:
   m_ObjectHideFlags: 0
@@ -552,6 +538,7 @@ GameObject:
   - component: {fileID: 5288993019716766835}
   - component: {fileID: 1162861842045047309}
   - component: {fileID: 5933359868482082800}
+  - component: {fileID: 6601843548648844863}
   m_Layer: 9
   m_Name: HealthBarCanvas
   m_TagString: Untagged
@@ -642,6 +629,20 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &6601843548648844863
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6301016433457678129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 215fd02076239a247812f9923ceb7188, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ZombieHealthBar
+  _slider: {fileID: 4973684120810331480}
+  _zombie: {fileID: 6749787322004156699}
 --- !u!1 &8395380649495660257
 GameObject:
   m_ObjectHideFlags: 0

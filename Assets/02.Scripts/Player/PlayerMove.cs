@@ -18,6 +18,9 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] private float _sprintCost = 10f;
     [SerializeField] private float _jumpCost = 20f;
 
+    public float MaxStaminaValue => MaxStamina;
+    public float Stamina => _stamina;
+
     [Header("컴포넌트")]
 
     [SerializeField] private CharacterController _characterController;
