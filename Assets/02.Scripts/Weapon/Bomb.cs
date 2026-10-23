@@ -66,11 +66,15 @@ public class Bomb : MonoBehaviour
         // Physics.OverlapSpere(원점, 반지름, 찾을 레이어들)
         Collider[] colliders =
             Physics.OverlapSphere(transform.position, _explosionRange, LayerMask.GetMask("Drum", "Zombie"));
+        DamageInfo damageInfo = new DamageInfo();
+        damageInfo.Value = _damage;
+        damageInfo.HitPoint = transform.position;
+        damageInfo.HitNormal = transform.forward;
 
         // 1. 드럼통과 좀비들에게 대미지를 준다.
         foreach (Collider col in colliders)
         {
-            col.GetComponent<IDamageable>()?.TakeDamage(_damage);
+            col.GetComponent<IDamageable>()?.TakeDamage(damageInfo);
         }
     }
 }

@@ -86,8 +86,13 @@ public class PlayerGunFire : MonoBehaviour
             effect.transform.forward = hitInfo.normal; // 수직 위치로 회전
             effect.Play();
 
-            // 맞은 대상이 좀비라면 TakeDamage
-            hitInfo.collider.GetComponent<IDamageable>()?.TakeDamage(_damage);
+            // 대미지 구조체 만들기
+            DamageInfo damageInfo = new DamageInfo();
+            damageInfo.Value = _damage;
+            damageInfo.HitPoint = hitInfo.point;
+            damageInfo.HitNormal = hitInfo.normal;
+
+            hitInfo.collider.GetComponent<IDamageable>()?.TakeDamage(damageInfo);
 
             // 황유찬 :       Player
             // 김민수 :      Zombie, Boss
