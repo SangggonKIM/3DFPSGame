@@ -6,6 +6,7 @@ using System.Collections;
 public class UI_HitEffect : MonoBehaviour
 {
     [SerializeField] private float _flashTime = 0.2f;
+    [SerializeField] private float _fadeTime = 0.7f;
 
     private Image _image;
 
@@ -17,14 +18,13 @@ public class UI_HitEffect : MonoBehaviour
 
     public void Flash(float alpha)
     {
-        Color color = _image.color;
-        color.a = alpha;
-        _image.color = color;
+        SetAlpha(alpha);
         StartCoroutine(Flash_Coroutine());
     }
 
-    public void Fade()
+    public void Fade(float alpha)
     {
+        SetAlpha(alpha);
         StartCoroutine(Fade_Coroutine());
     }
 
@@ -32,22 +32,37 @@ public class UI_HitEffect : MonoBehaviour
     {
         _image.enabled = true;
 
-        yield return StartCoroutine(Fade_Coroutine());
+        yield return new WaitForSeconds(_flashTime);
 
         _image.enabled = false;
     }
 
     public IEnumerator Fade_Coroutine()
     {
-        // 2. 0.4 에서 0.2로 페이드아웃한다.
-        Color color = _image.color;
-        color.a = 0.4f;
-        _image.color = color;
-        for (int i = 0; i < 20; i++)
+        _image.enabled = true;
+
+        float elapsedTime = 0f;
+
+        float startAlpha = _image.color.a;
+
+        while (elapsedTime < _fadeTime)
         {
-            color.a -= 0.02f;
-            _image.color = color;
-            yield return new WaitForSeconds(_flashTime / 20);
+            float alpha = Mathf.Lerp(startAlpha, 0f, elapsedTime / _fadeTime);
+
+            SetAlpha(alpha);
+
+            elapsedTime += Time.deltaTime;
+            yield return null; // 한 프레임씩 한다!
         }
+
+        SetAlpha(0f);
+        _image.enabled = false;
+    }
+
+    private void SetAlpha(float alpha)
+    {
+        Color color = _image.color;
+        color.a = alpha;
+        _image.color = color;
     }
 }
