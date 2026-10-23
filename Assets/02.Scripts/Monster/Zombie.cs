@@ -29,7 +29,8 @@ public class Zombie : MonoBehaviour, IDamageable
     [SerializeField] private float _attackRange = 1.5f;
     [SerializeField] private float _attackInterval = 1.2f;
     [SerializeField] private float _moveSpeed = 5f; // 이동속도
-    [SerializeField] private float _health = 30f; // 체력
+    [SerializeField] private float _maxHealth = 30f; // 최대 체력
+    private float _health; // 체력
 
     [Header("이펙트")]
 
@@ -42,11 +43,15 @@ public class Zombie : MonoBehaviour, IDamageable
     private const float PatrolDistance = 5f;
     private float _patrolTimer = 0f;
 
+    public float Health => _health;
+    public float MaxHealth => _maxHealth;
+
 
     private ZombieState _state = ZombieState.Patrol;
 
     private void Start()
     {
+        _health = _maxHealth;
         _startPosition = transform.position;
         _controller = GetComponent<CharacterController>();
 
