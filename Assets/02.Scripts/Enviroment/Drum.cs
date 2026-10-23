@@ -71,7 +71,7 @@ public class Drum : MonoBehaviour, IDamageable
             Vector3 hitPoint = col.ClosestPoint(explosionCenter);
             Vector3 hitNormal = (explosionCenter - hitPoint).normalized;
 
-            DamageInfo damageInfo = new()
+            DamageInfo damageInfo = new DamageInfo()
             {
                 Value = _damage,
                 HitPoint = hitPoint,
