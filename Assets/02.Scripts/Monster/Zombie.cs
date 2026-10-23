@@ -20,7 +20,7 @@ public enum ZombieState
     Patrol // 순찰: 처음 자리에서 좌우 5유닛을 왕복한다.
 }
 
-public class Zombie : MonoBehaviour
+public class Zombie : MonoBehaviour, IDamageable
 {
     [Header("스탯")]
 
@@ -30,6 +30,10 @@ public class Zombie : MonoBehaviour
     [SerializeField] private float _attackInterval = 1.2f;
     [SerializeField] private float _moveSpeed = 5f; // 이동속도
     [SerializeField] private float _health = 30f; // 체력
+
+    [Header("이펙트")]
+
+    [SerializeField] private ParticleSystem _bloodEffectPrefab;
 
     private CharacterController _controller;
     private Vector3 _startPosition;
@@ -86,6 +90,8 @@ public class Zombie : MonoBehaviour
 
         if (_health > 0f)
         {
+            // Todo. 맞은 부위에 피 이펙트를 실행하고 싶다.
+
             // 잠깐 멈칫 하고 싶다!
             Debug.Log($"{_state} -> Hit");
             _state = ZombieState.Hit;
