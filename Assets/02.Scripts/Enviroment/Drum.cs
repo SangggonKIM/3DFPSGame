@@ -64,14 +64,19 @@ public class Drum : MonoBehaviour, IDamageable
         Collider[] colliders =
             Physics.OverlapSphere(transform.position, _explosionRange, LayerMask.GetMask("Drum", "Zombie"));
 
-        DamageInfo damageInfo = new DamageInfo();
-        damageInfo.Value = _damage;
-        damageInfo.HitPoint = transform.position;
-        damageInfo.HitNormal = transform.forward;
-
         // 1. 드럼통들에게 대미지를 준다.
         foreach (Collider col in colliders)
         {
+            Vector3 explosionCenter = transform.position;
+            Vector3 hitPoint = col.ClosestPoint(explosionCenter);
+            Vector3 hitNormal = (explosionCenter - hitPoint).normalized;
+
+            DamageInfo damageInfo = new()
+            {
+                Value = _damage,
+                HitPoint = hitPoint,
+                HitNormal = hitNormal
+            };
             col.GetComponent<IDamageable>()?.TakeDamage(damageInfo);
         }
     }
