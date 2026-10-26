@@ -6,23 +6,14 @@ public class MinimapCamera : MonoBehaviour
 {
     [SerializeField] private Transform _target;
     [SerializeField] private float _height = 8f;
+    [SerializeField] private float _zoomStep = 2f;
+    [SerializeField] private float _minSize = 4f;
+    [SerializeField] private float _maxSize = 16f;
     private Camera _camera;
 
     private void Awake()
     {
         _camera = GetComponent<Camera>();
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Plus))
-        {
-            _camera.orthographicSize -= 1;
-        }
-        else if (Input.GetKeyDown(KeyCode.Minus))
-        {
-            _camera.orthographicSize += 1;
-        }
     }
 
     private void LateUpdate()
@@ -32,5 +23,20 @@ public class MinimapCamera : MonoBehaviour
 
         // 2. 대상이 쳐다보는 방향으로 카메라도 회전한다.
         transform.eulerAngles = new Vector3(90, _target.eulerAngles.y, 0f);
+    }
+
+    public void ZoomIn()
+    {
+        SetSize(_camera.orthographicSize - _zoomStep);
+    }
+
+    public void ZoomOut()
+    {
+        SetSize(_camera.orthographicSize + _zoomStep);
+    }
+
+    private void SetSize(float size)
+    {
+        _camera.orthographicSize = Mathf.Clamp(size, _minSize, _maxSize);
     }
 }
