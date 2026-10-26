@@ -52,24 +52,47 @@ public class Zombie : MonoBehaviour, IDamageable
 
     private ZombieState _state = ZombieState.Patrol;
 
-    private void OnEnable()
-    {
-        EnemyManager.Instance.AddZombie(this);
-    }
+    public event Action<Zombie> Died;
+    public ZombiePool Owner { get; private set; }
+    public bool IsInUse { get; private set; }
 
-    private void OnDisable()
+    private void Awake()
     {
-        EnemyManager.Instance.RemoveZombie(this);
-    }
-
-    private void Start()
-    {
-        _health = _maxHealth;
-        _startPosition = transform.position;
         _controller = GetComponent<CharacterController>();
+    }
 
-        // 게임을 시작하면 플레이어를 찾는다.
-        _player = GameObject.FindGameObjectWithTag("Player");
+    internal void Initialize(ZombiePool owner)
+    {
+        Owner = owner;
+    }
+
+    // 풀에서 꺼낼 때마다 상태를 초기화한다.
+    internal void Activate(Vector3 position, Quaternion rotation)
+    {
+        // CharacterController가 켜져 있으면 위치 변경이 덮어써지므로 잠깐 끈다.
+        _controller.enabled = false;
+        transform.SetPositionAndRotation(position, rotation);
+        _controller.enabled = true;
+
+        _health = _maxHealth;
+        _startPosition = position;
+        _attackTimer = 0f;
+        _patrolTimer = 0f;
+        _state = ZombieState.Patrol;
+
+        if (_player == null)
+        {
+            _player = GameObject.FindGameObjectWithTag("Player");
+        }
+
+        IsInUse = true;
+        gameObject.SetActive(true);
+    }
+
+    internal void Deactivate()
+    {
+        IsInUse = false;
+        gameObject.SetActive(false);
     }
 
     private void Update()
@@ -124,6 +147,7 @@ public class Zombie : MonoBehaviour, IDamageable
         {
             Debug.Log($"{_state} -> Death");
             _state = ZombieState.Death;
+            Died?.Invoke(this);
             StartCoroutine(Death_Coroutine());
         }
     }
@@ -141,7 +165,7 @@ public class Zombie : MonoBehaviour, IDamageable
     {
         _controller.enabled = false;
         yield return new WaitForSeconds(0.5f);
-        Destroy(gameObject);
+        Owner.ReturnZombie(this);
     }
 
     private void Idle()
