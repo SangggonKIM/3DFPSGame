@@ -476,7 +476,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
   _maxHealth: 100
-  _uiHitEffect: {fileID: 0}
 --- !u!114 &2038509749149369189
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -658,7 +657,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3332527727556959811}
   - component: {fileID: 2362466694784883035}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: MinimapIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
