@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using System.Collections;
 
@@ -37,6 +38,7 @@ public class Zombie : MonoBehaviour, IDamageable
 
     [SerializeField] private GameObject _bloodSprayPrefab;
 
+    public event Action OnHit;
     private CharacterController _controller;
     private Vector3 _startPosition;
     private GameObject _player;
@@ -49,6 +51,16 @@ public class Zombie : MonoBehaviour, IDamageable
 
 
     private ZombieState _state = ZombieState.Patrol;
+
+    private void OnEnable()
+    {
+        EnemyManager.Instance.AddZombie(this);
+    }
+
+    private void OnDisable()
+    {
+        EnemyManager.Instance.RemoveZombie(this);
+    }
 
     private void Start()
     {
@@ -97,6 +109,7 @@ public class Zombie : MonoBehaviour, IDamageable
 
         if (_health > 0f)
         {
+            OnHit?.Invoke();
             // Todo. 맞은 부위에 피 이펙트를 실행하고 싶다.
             GameObject bloodSpray = Instantiate(_bloodSprayPrefab, transform);
             bloodSpray.transform.position = transform.position;
