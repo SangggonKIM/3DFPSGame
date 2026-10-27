@@ -19,7 +19,8 @@ public enum ZombieState
     Attack, // 공격: 일정 시간마다 플레이어를 때린다.
     Hit, // 피격: 공격(총알, 폭탄)을 받아 잠깐 멈칫한다.
     Death, // 죽음: 쓰러지고 잠시 뒤 사라진다.
-    Patrol // 순찰: 처음 자리에서 좌우 5유닛을 왕복한다.
+    Patrol, // 순찰: 처음 자리에서 좌우 5유닛을 왕복한다.
+    Jump // 점프: NavMeshLink 구간을 포물선으로 건넌다.
 }
 
 [RequireComponent(typeof(NavMeshAgent))]
@@ -34,6 +35,9 @@ public class Zombie : MonoBehaviour, IDamageable
     [SerializeField] private float _attackInterval = 1.2f;
     [SerializeField] private float _moveSpeed = 5f; // 이동속도
     [SerializeField] private float _maxHealth = 30f; // 최대 체력
+    [SerializeField] private float _jumpHeight = 2f; // 포물선 최고점 높이
+    [SerializeField] private float _jumpSpeed = 6f; // 점프 중 수평 이동 속도
+    [SerializeField] private float _jumpWindupTime = 0.5f; // 도약 전 웅크리는 시간 (애니메이션의 발이 떨어지는 시점에 맞춘다)
     [SerializeField] private NavMeshAgent _agent;
     private float _health; // 체력
 
@@ -55,6 +59,7 @@ public class Zombie : MonoBehaviour, IDamageable
     private readonly int _attackToMove = Animator.StringToHash("AttackToMove");
     private readonly int _death = Animator.StringToHash("Death");
     private readonly int _hit = Animator.StringToHash("Hit");
+    private readonly int _jump = Animator.StringToHash("Jump");
 
     public float Health => _health;
     public float MaxHealth => _maxHealth;
@@ -69,6 +74,8 @@ public class Zombie : MonoBehaviour, IDamageable
     private void Awake()
     {
         _animator = GetComponentInChildren<Animator>();
+        // 링크 구간은 에이전트가 직선으로 건너지 않고 코드에서 직접 점프시킨다.
+        _agent.autoTraverseOffMeshLink = false;
     }
 
     internal void Initialize(ZombiePool owner)
@@ -134,7 +141,12 @@ public class Zombie : MonoBehaviour, IDamageable
 
         _health -= damageInfo.Value;
 
-        StopAllCoroutines();
+        // 점프 중에는 멈칫하지 않는다. 코루틴이 끊기면 링크 위에 갇히기 때문이다.
+        bool isJumping = _state == ZombieState.Jump;
+        if (!isJumping || _health <= 0f)
+        {
+            StopAllCoroutines();
+        }
 
         if (_health > 0f)
         {
@@ -143,6 +155,8 @@ public class Zombie : MonoBehaviour, IDamageable
             GameObject bloodSpray = Instantiate(_bloodSprayPrefab, transform);
             bloodSpray.transform.position = transform.position;
             bloodSpray.transform.forward = transform.forward;
+
+            if (isJumping) return;
 
             // 잠깐 멈칫 하고 싶다!
             Debug.Log($"{_state} -> Hit");
@@ -226,6 +240,8 @@ public class Zombie : MonoBehaviour, IDamageable
     // 추격: 플레이어를 쫓아간다.
     private void Trace()
     {
+        if (TryStartJump()) return;
+
         _animator.SetTrigger(_idleToMove);
         // 처음 자리에서 너무 멀어지면 돌아간다.
         if (Vector3.Distance(transform.position, _startPosition) > _comebackDistance)
@@ -253,6 +269,8 @@ public class Zombie : MonoBehaviour, IDamageable
 
     private void Comeback()
     {
+        if (TryStartJump()) return;
+
         if (Vector3.Distance(transform.position, _startPosition) < _agent.stoppingDistance)
         {
             _patrolTimer = 0f;
@@ -262,6 +280,55 @@ public class Zombie : MonoBehaviour, IDamageable
         }
 
         _agent.SetDestination(_startPosition);
+    }
+
+    // 에이전트가 링크 시작점에 도착했으면 점프를 시작한다.
+    private bool TryStartJump()
+    {
+        if (!_agent.isOnOffMeshLink) return false;
+
+        ZombieState returnState = _state;
+        Debug.Log($"{_state} -> Jump");
+        _animator.SetTrigger(_jump);
+        _state = ZombieState.Jump;
+        StartCoroutine(Jump_Coroutine(_agent.currentOffMeshLinkData, returnState));
+        return true;
+    }
+
+    // 링크 시작점에서 끝점까지 포물선을 그리며 이동한다.
+    private IEnumerator Jump_Coroutine(OffMeshLinkData link, ZombieState returnState)
+    {
+        Vector3 start = transform.position;
+        Vector3 end = link.endPos + Vector3.up * _agent.baseOffset;
+
+        Vector3 lookDirection = end - start;
+        lookDirection.y = 0f;
+        if (lookDirection.sqrMagnitude > 0.0001f)
+        {
+            transform.forward = lookDirection.normalized;
+        }
+
+        // 애니메이션의 준비 동작이 끝날 때까지 제자리에서 기다린다.
+        yield return new WaitForSeconds(_jumpWindupTime);
+
+        float duration = Vector3.Distance(start, end) / _jumpSpeed;
+        float t = 0f;
+        while (t < 1f)
+        {
+            t += Time.deltaTime / duration;
+            float clampedT = Mathf.Clamp01(t);
+
+            // 직선 보간 + 4t(1-t) 곡선: t=0.5일 때 _jumpHeight만큼 가장 높이 뜬다.
+            Vector3 position = Vector3.Lerp(start, end, clampedT);
+            position.y += _jumpHeight * 4f * clampedT * (1f - clampedT);
+            transform.position = position;
+            yield return null;
+        }
+
+        _agent.CompleteOffMeshLink(); // 링크 통과 완료 → 에이전트가 다시 경로를 따라 이동한다.
+
+        Debug.Log($"{_state} -> {returnState}");
+        _state = returnState;
     }
 
     // 공격: 일정 시간마다 플레이어를 때린다.
