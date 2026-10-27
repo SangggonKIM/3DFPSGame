@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using System.Collections;
+using UnityEngine.AI;
 
 // FSM(유한 상태 머신) : 유한개의 상태가 있고, 상태마다 행동을 다르게 함으로써 AI를 구현하는 유명한 방법
 // - "상태": 객체가 가질 수 있는 어떤 조건이나 상황
@@ -21,6 +22,7 @@ public enum ZombieState
     Patrol // 순찰: 처음 자리에서 좌우 5유닛을 왕복한다.
 }
 
+[RequireComponent(typeof(NavMeshAgent))]
 public class Zombie : MonoBehaviour, IDamageable
 {
     [Header("스탯")]
@@ -32,6 +34,7 @@ public class Zombie : MonoBehaviour, IDamageable
     [SerializeField] private float _attackInterval = 1.2f;
     [SerializeField] private float _moveSpeed = 5f; // 이동속도
     [SerializeField] private float _maxHealth = 30f; // 최대 체력
+    [SerializeField] private NavMeshAgent _agent;
     private float _health; // 체력
 
     [Header("이펙트")]
@@ -39,7 +42,6 @@ public class Zombie : MonoBehaviour, IDamageable
     [SerializeField] private GameObject _bloodSprayPrefab;
 
     public event Action OnHit;
-    private CharacterController _controller;
     private Vector3 _startPosition;
     private GameObject _player;
     private float _attackTimer = 0f;
@@ -56,11 +58,6 @@ public class Zombie : MonoBehaviour, IDamageable
     public ZombiePool Owner { get; private set; }
     public bool IsInUse { get; private set; }
 
-    private void Awake()
-    {
-        _controller = GetComponent<CharacterController>();
-    }
-
     internal void Initialize(ZombiePool owner)
     {
         Owner = owner;
@@ -69,11 +66,7 @@ public class Zombie : MonoBehaviour, IDamageable
     // 풀에서 꺼낼 때마다 상태를 초기화한다.
     internal void Activate(Vector3 position, Quaternion rotation)
     {
-        // CharacterController가 켜져 있으면 위치 변경이 덮어써지므로 잠깐 끈다.
-        _controller.enabled = false;
         transform.SetPositionAndRotation(position, rotation);
-        _controller.enabled = true;
-
         _health = _maxHealth;
         _startPosition = position;
         _attackTimer = 0f;
@@ -163,7 +156,6 @@ public class Zombie : MonoBehaviour, IDamageable
 
     private IEnumerator Death_Coroutine()
     {
-        _controller.enabled = false;
         yield return new WaitForSeconds(0.5f);
         Owner.ReturnZombie(this);
     }
@@ -210,8 +202,6 @@ public class Zombie : MonoBehaviour, IDamageable
         {
             transform.forward = velocity.normalized;
         }
-
-        _controller.SimpleMove(velocity);
     }
 
     // 추격: 플레이어를 쫓아간다.
@@ -236,12 +226,7 @@ public class Zombie : MonoBehaviour, IDamageable
             return;
         }
 
-        Vector3 direction = _player.transform.position - transform.position;
-        direction.y = 0f;
-        direction.Normalize();
-
-        transform.forward = direction;
-        _controller.SimpleMove(direction * _moveSpeed);
+        _agent.SetDestination(_player.transform.position); // 한줄로 알아서 회전하고 플레이어 바라보며 따라간다.
     }
 
     private void Comeback()
@@ -254,12 +239,7 @@ public class Zombie : MonoBehaviour, IDamageable
             return;
         }
 
-        Vector3 direction = _startPosition - transform.position;
-        direction.y = 0f;
-        direction.Normalize();
-
-        transform.forward = direction;
-        _controller.SimpleMove(direction * _moveSpeed);
+        _agent.SetDestination(_startPosition);
     }
 
     // 공격: 일정 시간마다 플레이어를 때린다.
