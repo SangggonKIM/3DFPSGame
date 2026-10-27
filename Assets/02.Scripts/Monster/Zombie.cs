@@ -54,6 +54,7 @@ public class Zombie : MonoBehaviour, IDamageable
     private readonly int _startAttack = Animator.StringToHash("StartAttack");
     private readonly int _attackToMove = Animator.StringToHash("AttackToMove");
     private readonly int _death = Animator.StringToHash("Death");
+    private readonly int _hit = Animator.StringToHash("Hit");
 
     public float Health => _health;
     public float MaxHealth => _maxHealth;
@@ -161,7 +162,8 @@ public class Zombie : MonoBehaviour, IDamageable
     private IEnumerator Hit_Coroutine()
     {
         StopAgent();
-        yield return new WaitForSeconds(0.3f); // 잠깐 멈칫한다!
+        _animator.SetTrigger(_hit);
+        yield return new WaitForSeconds(0.5f); // 잠깐 멈칫한다!
 
         // 맞았으니 쫓아온다.
         Debug.Log($"{_state} -> Trace");
