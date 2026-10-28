@@ -8,12 +8,15 @@ public class PlayerBombFire : MonoBehaviour
     [SerializeField] private float _firstPower = 15f;
     [SerializeField] private int _maxCount = 10;
 
+    private Animator _animator;
     private float _additionalForce = 0f;
     private int _bombCount;
     private float _throwPower;
+    private int _grenadeFire = Animator.StringToHash("GrenadeFire");
 
     private void Awake()
     {
+        _animator = GetComponentInChildren<Animator>();
         _bombCount = _maxCount;
         _throwPower = _firstPower;
     }
@@ -46,6 +49,7 @@ public class PlayerBombFire : MonoBehaviour
         if (bomb == null) return false;
 
         bomb.Launch(viewCamera.transform.forward * _throwPower);
+        _animator.SetTrigger(_grenadeFire);
         return true;
     }
 }
