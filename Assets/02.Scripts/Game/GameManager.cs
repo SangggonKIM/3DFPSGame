@@ -12,6 +12,7 @@ public enum GameState
 
 public class GameManager : MonoBehaviour
 {
+    private int _moveMotion = Animator.StringToHash("MoveMotion");
     private static GameManager _instance = null;
     public static GameManager Instance => _instance;
 
@@ -19,6 +20,7 @@ public class GameManager : MonoBehaviour
     public GameState State => _state;
 
     [SerializeField] private TextMeshProUGUI _stateText;
+    [SerializeField] private Animator _playerAnimator;
 
     private void Awake()
     {
@@ -56,5 +58,7 @@ public class GameManager : MonoBehaviour
         _stateText.gameObject.SetActive(true);
         _stateText.text = "게임오버";
         _stateText.color = Color.red;
+
+        _playerAnimator.SetFloat(_moveMotion, 0f);
     }
 }

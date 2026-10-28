@@ -16,12 +16,16 @@ public class PlayerGunFire : MonoBehaviour
 
     private int _bulletCount;
     private float _fireTimer;
+    private Animator _animator;
     private Coroutine _reloadCoroutine;
+    private int _attack = Animator.StringToHash("Attack");
+    private int _moveMotion = Animator.StringToHash("MoveMotion");
 
 
     private void Start()
     {
         _bulletCount = _maxBulletCount;
+        _animator = GetComponentInChildren<Animator>();
     }
 
     private void Update()
@@ -37,6 +41,12 @@ public class PlayerGunFire : MonoBehaviour
             _bulletCount--;
             _fireTimer = _fireInterval;
             Shoot();
+
+            // 서 있을 때(MoveMotion이 0)만 쏘는 동작을 한다.
+            if (_animator.GetFloat(_moveMotion) == 0f)
+            {
+                _animator.SetTrigger(_attack);
+            }
 
             // 이 방식은: 이 모노비헤이비어가 등록한 모든 코루틴을 실행 취소
             // StopAllCorotuine(); 

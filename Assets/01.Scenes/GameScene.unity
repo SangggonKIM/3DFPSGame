@@ -480,6 +480,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d074da2e8f72d5343ac88022b2b200f5, type: 3}
+--- !u!95 &116911684 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 6996394261464290209, guid: 4ae61ff5dbf10454e9e9737e79ee56d7, type: 3}
+  m_PrefabInstance: {fileID: 278617345036817167}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &199768682 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4592250149526595390, guid: 366830202f60f854d87c726ec312087d, type: 3}
@@ -676,7 +681,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: 0.01
   far clip plane: 1000
   field of view: 60
   orthographic: 0
@@ -5329,6 +5334,10 @@ PrefabInstance:
       propertyPath: _stateText
       value: 
       objectReference: {fileID: 994732380}
+    - target: {fileID: -2795574669713631491, guid: 366830202f60f854d87c726ec312087d, type: 3}
+      propertyPath: _playerAnimator
+      value: 
+      objectReference: {fileID: 116911684}
     - target: {fileID: 1440618524752054912, guid: 366830202f60f854d87c726ec312087d, type: 3}
       propertyPath: m_Name
       value: '@GameManager'

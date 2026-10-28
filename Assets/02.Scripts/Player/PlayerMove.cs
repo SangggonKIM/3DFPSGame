@@ -10,6 +10,8 @@ public class PlayerMove : MonoBehaviour
     private float _yVelocity; // 위아래 속도, 매 프레임마다 중력 가속도가 붙는다.
     private int _jumpCount = 0; // 점프 횟수
     private float _stamina = 0f;
+    private Animator _animator;
+    private int _moveMotion = Animator.StringToHash("MoveMotion");
 
     [SerializeField] private float _moveSpeed = 7f;
     [SerializeField] private float _jumpPower = 10f;
@@ -28,6 +30,7 @@ public class PlayerMove : MonoBehaviour
     {
         _characterController = GetComponent<CharacterController>();
         _stamina = MaxStamina;
+        _animator = GetComponentInChildren<Animator>();
     }
 
     private void Update()
@@ -43,6 +46,7 @@ public class PlayerMove : MonoBehaviour
         // 2. 키보드 입력에 따라 방향을 구한다.
         var direction = new Vector3(h, 0f, v);
         direction.Normalize(); // 대각선이어도 방향의 길이 1로 바꾸기 위해
+        _animator.SetFloat(_moveMotion, direction.magnitude);
         direction = transform.TransformDirection(direction);
         // 로컬 좌표계: 한 대상을 중심
         // 월드 좌표계: 세상을 중심
