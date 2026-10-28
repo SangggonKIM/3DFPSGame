@@ -7,22 +7,28 @@ public class PlayerBombFire : MonoBehaviour
     [SerializeField] private BombPool _bombPool;
     [SerializeField] private float _firstPower = 15f;
     [SerializeField] private int _maxCount = 10;
+    [SerializeField] private float _throwFadeTime = 0.3f;
 
     private Animator _animator;
     private float _additionalForce = 0f;
     private int _bombCount;
     private float _throwPower;
-    private int _grenadeFire = Animator.StringToHash("GrenadeFire");
+    private int _throwLayer;
+    private float _throwWeight;
+    private int _throw = Animator.StringToHash("Throw");
 
     private void Awake()
     {
         _animator = GetComponentInChildren<Animator>();
+        _throwLayer = _animator.GetLayerIndex("Throw Layer");
         _bombCount = _maxCount;
         _throwPower = _firstPower;
     }
 
     private void Update()
     {
+        UpdateThrowWeight();
+
         if (GameManager.Instance.State != GameState.Playing) return;
         // 1. 마우스 오른쪽 버튼 입력 받기
         if (Input.GetButton("Fire2"))
@@ -49,7 +55,19 @@ public class PlayerBombFire : MonoBehaviour
         if (bomb == null) return false;
 
         bomb.Launch(viewCamera.transform.forward * _throwPower);
-        _animator.SetTrigger(_grenadeFire);
+        _throwWeight = 1f;
+        _animator.SetTrigger(_throw);
         return true;
+    }
+
+    private void UpdateThrowWeight()
+    {
+        AnimatorStateInfo state = _animator.GetCurrentAnimatorStateInfo(_throwLayer);
+        if (state.IsName("Throw") && state.normalizedTime >= 0.5f)
+        {
+            _throwWeight = Mathf.MoveTowards(_throwWeight, 0f, Time.deltaTime / _throwFadeTime);
+        }
+
+        _animator.SetLayerWeight(_throwLayer, _throwWeight);
     }
 }
