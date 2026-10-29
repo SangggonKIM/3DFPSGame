@@ -29,6 +29,7 @@ public class Player : MonoBehaviour, IDamageable
 
     private void Update()
     {
+        if (GameManager.Instance.State != GameState.Playing) return;
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             _weaponMode = WeaponMode.Normal;

@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 2639353399882152409}
   - component: {fileID: 4468821784525427929}
   - component: {fileID: 2038509749149369189}
+  - component: {fileID: 2206490551365720219}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -142,6 +143,7 @@ MonoBehaviour:
   _bombPool: {fileID: 0}
   _firstPower: 15
   _maxCount: 10
+  _throwFadeTime: 0.3
 --- !u!114 &4468821784525427929
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -170,6 +172,18 @@ MonoBehaviour:
   _slider:
   - {fileID: 0}
   - {fileID: 0}
+--- !u!114 &2206490551365720219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4526368946458167702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85b1940024a3e1643b84be4f188328db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerZoom
 --- !u!1 &4543148008486641834
 GameObject:
   m_ObjectHideFlags: 0
