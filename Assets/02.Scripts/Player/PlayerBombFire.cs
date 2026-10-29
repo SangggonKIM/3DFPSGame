@@ -16,6 +16,7 @@ public class PlayerBombFire : MonoBehaviour
     private int _throwLayer;
     private float _throwWeight;
     private int _throw = Animator.StringToHash("Throw");
+    private Player _player;
 
     private void Awake()
     {
@@ -23,6 +24,7 @@ public class PlayerBombFire : MonoBehaviour
         _throwLayer = _animator.GetLayerIndex("Throw Layer");
         _bombCount = _maxCount;
         _throwPower = _firstPower;
+        _player = GetComponent<Player>();
     }
 
     private void Update()
@@ -31,13 +33,13 @@ public class PlayerBombFire : MonoBehaviour
 
         if (GameManager.Instance.State != GameState.Playing) return;
         // 1. 마우스 오른쪽 버튼 입력 받기
-        if (Input.GetButton("Fire2"))
+        if (Input.GetButton("Fire2") && _player.WeaponMode == WeaponMode.Normal)
         {
             _additionalForce += 1f * Time.deltaTime;
             _throwPower = _firstPower + _additionalForce;
         }
 
-        if (Input.GetButtonUp("Fire2"))
+        if (Input.GetButtonUp("Fire2") && _player.WeaponMode == WeaponMode.Normal)
         {
             if (_bombCount > 0 && Shoot()) _bombCount--;
             _additionalForce = 0f;

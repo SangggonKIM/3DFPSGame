@@ -9,6 +9,9 @@ public class Player : MonoBehaviour, IDamageable
     private float _health;
     private Animator _animator;
     private int _injuredLayerIndex;
+    private WeaponMode _weaponMode = WeaponMode.Normal;
+
+    public WeaponMode WeaponMode => _weaponMode;
 
     public float MaxHealth => _maxHealth;
     public float Health => _health;
@@ -22,6 +25,18 @@ public class Player : MonoBehaviour, IDamageable
         _injuredLayerIndex = _animator.GetLayerIndex("Injured");
 
         _health = _maxHealth;
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            _weaponMode = WeaponMode.Normal;
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            _weaponMode = WeaponMode.Sniper;
+        }
     }
 
     public void TakeDamage(DamageInfo damageInfo)
