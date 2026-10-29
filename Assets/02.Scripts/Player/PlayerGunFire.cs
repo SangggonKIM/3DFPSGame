@@ -15,6 +15,9 @@ public class PlayerGunFire : MonoBehaviour
     [SerializeField] private float _damage = 10f; // 공격력
     [SerializeField] private float _fireInterval = 0.1f; // 발사 속도
 
+    [SerializeField] private GameObject[] _muzzleFlahes;
+    [SerializeField] private float _flashTime = 0.05f;
+
     public event Action<int, int> OnBulletFire;
 
     private int _bulletCount;
@@ -91,6 +94,7 @@ public class PlayerGunFire : MonoBehaviour
 
     private void Shoot()
     {
+        StartCoroutine(MuzzleFlash_Coroutine());
         // 2. 레이(광선)를 생성하고 발사될 위치와 진행 방향 설정하기
         var cameraTransform = Camera.main.transform;
         var ray = new Ray(cameraTransform.position, cameraTransform.forward);
@@ -122,5 +126,16 @@ public class PlayerGunFire : MonoBehaviour
             // 김민수 :      Zombie, Boss
             // 박현서: Drum, Box, Bird
         }
+    }
+
+    private IEnumerator MuzzleFlash_Coroutine()
+    {
+        int randomIndex = UnityEngine.Random.Range(0, _muzzleFlahes.Length);
+        GameObject flash = _muzzleFlahes[randomIndex];
+        flash.SetActive(true);
+
+        yield return new WaitForSeconds(_flashTime);
+
+        flash.SetActive(false);
     }
 }
