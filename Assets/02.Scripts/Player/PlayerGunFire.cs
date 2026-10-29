@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -14,7 +15,13 @@ public class PlayerGunFire : MonoBehaviour
     [SerializeField] private float _damage = 10f; // 공격력
     [SerializeField] private float _fireInterval = 0.1f; // 발사 속도
 
+    public event Action<int, int> OnBulletFire;
+
     private int _bulletCount;
+
+    public int BulletCount => _bulletCount;
+    public int MaxBulletCount => _maxBulletCount;
+
     private float _fireTimer;
     private Animator _animator;
     private Coroutine _reloadCoroutine;
@@ -22,9 +29,13 @@ public class PlayerGunFire : MonoBehaviour
     private int _moveMotion = Animator.StringToHash("MoveMotion");
 
 
-    private void Start()
+    private void Awake()
     {
         _bulletCount = _maxBulletCount;
+    }
+
+    private void Start()
+    {
         _animator = GetComponentInChildren<Animator>();
     }
 
@@ -41,6 +52,7 @@ public class PlayerGunFire : MonoBehaviour
             _bulletCount--;
             _fireTimer = _fireInterval;
             Shoot();
+            OnBulletFire?.Invoke(_bulletCount, _maxBulletCount);
             _animator.SetBool(_fire, true);
 
             // 이 방식은: 이 모노비헤이비어가 등록한 모든 코루틴을 실행 취소
@@ -72,6 +84,7 @@ public class PlayerGunFire : MonoBehaviour
         yield return new WaitForSeconds(_reloadingTime);
 
         _bulletCount = _maxBulletCount;
+        OnBulletFire?.Invoke(_bulletCount, _maxBulletCount);
 
         Debug.Log("재장전 완료!");
     }

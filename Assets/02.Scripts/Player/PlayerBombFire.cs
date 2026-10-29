@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 
 // 마우스 오른쪽 버튼을 누르면 시선이 바라보는 방향으로 수류탄을 던지고 싶다.
 public class PlayerBombFire : MonoBehaviour
@@ -9,9 +10,15 @@ public class PlayerBombFire : MonoBehaviour
     [SerializeField] private int _maxCount = 10;
     [SerializeField] private float _throwFadeTime = 0.3f;
 
+    public event Action<int> OnBombThrow;
+
     private Animator _animator;
     private float _additionalForce = 0f;
     private int _bombCount;
+
+    public int BombCount => _bombCount;
+    public int MaxBombCount => _maxCount;
+
     private float _throwPower;
     private int _throwLayer;
     private float _throwWeight;
@@ -42,6 +49,7 @@ public class PlayerBombFire : MonoBehaviour
         if (Input.GetButtonUp("Fire2") && _player.WeaponMode == WeaponMode.Normal)
         {
             if (_bombCount > 0 && Shoot()) _bombCount--;
+            OnBombThrow?.Invoke(_bombCount);
             _additionalForce = 0f;
             _throwPower = _firstPower;
         }
