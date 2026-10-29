@@ -18,6 +18,12 @@ public class PlayerGunFire : MonoBehaviour
     [SerializeField] private GameObject[] _muzzleFlahes;
     [SerializeField] private float _flashTime = 0.05f;
 
+    [Header("총알 궤적")]
+    [SerializeField] private LineRenderer _bulletTrail;
+    [SerializeField] private Transform _muzzlePoint;
+    [SerializeField] private float _trailSpeed = 500f; // 초당 이동 거리
+    [SerializeField] private float _trailLength = 3f; // 궤적 꼬리 길이
+
     public event Action<int, int> OnBulletFire;
 
     private int _bulletCount;
@@ -28,6 +34,7 @@ public class PlayerGunFire : MonoBehaviour
     private float _fireTimer;
     private Animator _animator;
     private Coroutine _reloadCoroutine;
+    private Coroutine _trailCoroutine;
     private int _fire = Animator.StringToHash("Fire");
     private int _moveMotion = Animator.StringToHash("MoveMotion");
 
@@ -35,6 +42,9 @@ public class PlayerGunFire : MonoBehaviour
     private void Awake()
     {
         _bulletCount = _maxBulletCount;
+        _bulletTrail.positionCount = 2;
+        _bulletTrail.useWorldSpace = true;
+        _bulletTrail.enabled = false;
     }
 
     private void Start()
@@ -104,6 +114,11 @@ public class PlayerGunFire : MonoBehaviour
 
         // 4. 레이를 발사하고, 만일 부딛힌 물체가 있다면 이펙트 표시하기
         var isHit = Physics.Raycast(ray, out hitInfo, _range);
+
+        // 맞지 않았으면 사거리 끝까지 궤적을 그린다.
+        Vector3 endPoint = isHit ? hitInfo.point : ray.GetPoint(_range);
+        PlayBulletTrail(endPoint);
+
         if (isHit)
         {
             // Debug.Log($"{hitInfo.collider.name}이 총알을 맞았다. 데미지: {_damage}");
@@ -137,5 +152,34 @@ public class PlayerGunFire : MonoBehaviour
         yield return new WaitForSeconds(_flashTime);
 
         flash.SetActive(false);
+    }
+
+    private void PlayBulletTrail(Vector3 endPoint)
+    {
+        // 궤적 하나를 재사용하므로 이전 궤적은 중단한다.
+        if (_trailCoroutine != null) StopCoroutine(_trailCoroutine);
+        _trailCoroutine = StartCoroutine(BulletTrail_Coroutine(_muzzlePoint.position, endPoint));
+    }
+
+    private IEnumerator BulletTrail_Coroutine(Vector3 start, Vector3 end)
+    {
+        float distance = Vector3.Distance(start, end);
+        float traveled = 0f;
+        _bulletTrail.enabled = true;
+
+        // 머리(head)가 목표까지 날아가고, 꼬리(tail)가 _trailLength만큼 뒤따라온다.
+        while (traveled < distance + _trailLength)
+        {
+            traveled += _trailSpeed * Time.deltaTime;
+            float head = Mathf.Min(traveled, distance);
+            float tail = Mathf.Clamp(traveled - _trailLength, 0f, distance);
+
+            _bulletTrail.SetPosition(0, Vector3.MoveTowards(start, end, tail));
+            _bulletTrail.SetPosition(1, Vector3.MoveTowards(start, end, head));
+            yield return null;
+        }
+
+        _bulletTrail.enabled = false;
+        _trailCoroutine = null;
     }
 }
