@@ -19,6 +19,7 @@ public class PlayerGunFire : MonoBehaviour
     [SerializeField] private float _flashTime = 0.05f;
 
     [Header("총알 궤적")]
+
     [SerializeField] private LineRenderer _bulletTrail;
     [SerializeField] private Transform _muzzlePoint;
     [SerializeField] private float _trailSpeed = 500f; // 초당 이동 거리
@@ -37,6 +38,7 @@ public class PlayerGunFire : MonoBehaviour
     private Coroutine _trailCoroutine;
     private int _fire = Animator.StringToHash("Fire");
     private int _moveMotion = Animator.StringToHash("MoveMotion");
+    private Player _player;
 
 
     private void Awake()
@@ -50,10 +52,12 @@ public class PlayerGunFire : MonoBehaviour
     private void Start()
     {
         _animator = GetComponentInChildren<Animator>();
+        _player = GetComponent<Player>();
     }
 
     private void Update()
     {
+        if (_player.WeaponMode == WeaponMode.Melee) return;
         if (GameManager.Instance.State != GameState.Playing) return;
         // 0. 발사 타이머를 지난 시간만큼 줄인다.
         _fireTimer -= Time.deltaTime;
