@@ -1,0 +1,6 @@
+{"label":"before","view":"view1_street","batches":373,"setPassCalls":99,"drawCalls":895,"triangles":5232106,"vertices":3233638,"shadowCasters":576,"frameTimeMs":12.91,"renderTimeMs":3.87}
+{"label":"before","view":"view2_overview","batches":330,"setPassCalls":91,"drawCalls":904,"triangles":7204020,"vertices":4344544,"shadowCasters":204,"frameTimeMs":11.41,"renderTimeMs":2.84}
+{"label":"before","view":"view3_behind_hangar","batches":283,"setPassCalls":82,"drawCalls":679,"triangles":5174439,"vertices":3163786,"shadowCasters":464,"frameTimeMs":13.21,"renderTimeMs":3.41}
+{"label":"after","view":"view1_street","batches":335,"setPassCalls":79,"drawCalls":587,"triangles":1129264,"vertices":793572,"shadowCasters":17,"frameTimeMs":14.28,"renderTimeMs":3.46}
+{"label":"after","view":"view2_overview","batches":283,"setPassCalls":78,"drawCalls":708,"triangles":2148755,"vertices":1450053,"shadowCasters":0,"frameTimeMs":12.55,"renderTimeMs":3.08}
+{"label":"after","view":"view3_behind_hangar","batches":131,"setPassCalls":64,"drawCalls":163,"triangles":1037432,"vertices":656702,"shadowCasters":0,"frameTimeMs":12.70,"renderTimeMs":2.89}
