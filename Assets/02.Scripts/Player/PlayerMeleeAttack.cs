@@ -4,6 +4,7 @@ using UnityEngine;
 public class PlayerMeleeAttack : MonoBehaviour
 {
     [SerializeField] private Collider _kalCollider;
+    [SerializeField] private ParticleSystem _slashVfx;
     [SerializeField] private float _damage = 10f;
     private Player _player;
     private Animator _animator;
@@ -16,9 +17,17 @@ public class PlayerMeleeAttack : MonoBehaviour
         _meleeLayerIndex = _animator.GetLayerIndex("Melee Layer");
     }
 
-    // 람다식을 활용한 함수
-    public void ActivateCollider() => _kalCollider.enabled = true;
-    public void DeactivateCollider() => _kalCollider.enabled = false;
+    public void ActivateCollider()
+    {
+        _kalCollider.enabled = true;
+        _slashVfx.Play();
+    }
+
+    public void DeactivateCollider()
+    {
+        _kalCollider.enabled = false;
+        _slashVfx.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+    }
 
     public void OnTriggerEntered(Collider other)
     {
