@@ -2903,6 +2903,7 @@ MonoBehaviour:
   _weaponIcon: {fileID: 2048029184}
   _normalSprite: {fileID: 21300000, guid: 9a8580ae039615e4b8989c2ce6a872ec, type: 3}
   _sniperSprite: {fileID: 21300000, guid: 930d9aed38cd6104ab5af7bbebba471c, type: 3}
+  _meleeSprite: {fileID: 21300000, guid: 1b594e82c9f30ad48946f57c180f875f, type: 3}
   _ammoText: {fileID: 634788159}
   _bombRoot: {fileID: 396926857}
   _bombText: {fileID: 396926859}

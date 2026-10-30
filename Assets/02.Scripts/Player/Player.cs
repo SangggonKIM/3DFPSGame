@@ -10,7 +10,7 @@ public class Player : MonoBehaviour, IDamageable
     private Animator _animator;
     private int _injuredLayerIndex;
     private WeaponMode _weaponMode = WeaponMode.Normal;
-    public event Action<bool> OnWeaponChange;
+    public event Action<WeaponMode> OnWeaponChange;
 
     public WeaponMode WeaponMode => _weaponMode;
 
@@ -34,16 +34,17 @@ public class Player : MonoBehaviour, IDamageable
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             _weaponMode = WeaponMode.Normal;
-            OnWeaponChange?.Invoke(false);
+            OnWeaponChange?.Invoke(_weaponMode);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             _weaponMode = WeaponMode.Sniper;
-            OnWeaponChange?.Invoke(true);
+            OnWeaponChange?.Invoke(_weaponMode);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha3))
         {
             _weaponMode = WeaponMode.Melee;
+            OnWeaponChange?.Invoke(_weaponMode);
         }
     }
 

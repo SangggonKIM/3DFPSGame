@@ -10,11 +10,14 @@ public class UI_PlayerWeapons : MonoBehaviour
     [SerializeField] private PlayerBombFire _bombFire;
 
     [Header("무기 아이콘")]
+
     [SerializeField] private Image _weaponIcon;
     [SerializeField] private Sprite _normalSprite;
     [SerializeField] private Sprite _sniperSprite;
+    [SerializeField] private Sprite _meleeSprite;
 
     [Header("탄약 / 폭탄")]
+
     [SerializeField] private TextMeshProUGUI _ammoText;
     [SerializeField] private GameObject _bombRoot; // 일반 모드에서만 표시
     [SerializeField] private TextMeshProUGUI _bombText;
@@ -36,15 +39,28 @@ public class UI_PlayerWeapons : MonoBehaviour
     private void Start()
     {
         // 이벤트는 이후 변화만 알려주므로 초기값은 직접 읽는다.
-        RefreshWeapon(_player.WeaponMode == WeaponMode.Sniper);
+        RefreshWeapon(_player.WeaponMode);
         RefreshAmmo(_gunFire.BulletCount, _gunFire.MaxBulletCount);
         RefreshBomb(_bombFire.BombCount);
     }
 
-    private void RefreshWeapon(bool isSniper)
+    private void RefreshWeapon(WeaponMode weaponMode)
     {
-        _weaponIcon.sprite = isSniper ? _sniperSprite : _normalSprite;
-        _bombRoot.SetActive(!isSniper);
+        switch (weaponMode)
+        {
+            case WeaponMode.Normal:
+                _weaponIcon.sprite = _normalSprite;
+                break;
+            case WeaponMode.Sniper:
+                _weaponIcon.sprite = _sniperSprite;
+                break;
+            case WeaponMode.Melee:
+                _weaponIcon.sprite = _meleeSprite;
+                break;
+        }
+
+        _ammoText.gameObject.SetActive(weaponMode != WeaponMode.Melee);
+        _bombRoot.SetActive(weaponMode == WeaponMode.Normal);
     }
 
     private void RefreshAmmo(int current, int max)
