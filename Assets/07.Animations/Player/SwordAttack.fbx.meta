@@ -57,7 +57,7 @@ ModelImporter:
       curves: []
       events:
       - time: 0.5
-        functionName: ActivateCollider
+        functionName: FanAttack
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
