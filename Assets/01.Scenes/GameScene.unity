@@ -4727,24 +4727,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!1 &1773282482 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7717568538533079060, guid: 4ae61ff5dbf10454e9e9737e79ee56d7, type: 3}
-  m_PrefabInstance: {fileID: 278617345036817167}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1773282485
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1773282482}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94710cb2912cc9d4d9b4106411a06b97, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerMeleeAttack
-  _kalCollider: {fileID: 2012590105}
 --- !u!1 &1787215780
 GameObject:
   m_ObjectHideFlags: 0
@@ -5537,11 +5519,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UI_HitEffect
   _flashTime: 0.6
   _fadeTime: 0.7
---- !u!65 &2012590105 stripped
-BoxCollider:
-  m_CorrespondingSourceObject: {fileID: 2483998717015852039, guid: 4ae61ff5dbf10454e9e9737e79ee56d7, type: 3}
-  m_PrefabInstance: {fileID: 278617345036817167}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2034057810
 GameObject:
   m_ObjectHideFlags: 0
@@ -5876,10 +5853,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 309774074191874590, guid: 4ae61ff5dbf10454e9e9737e79ee56d7, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1827681677944761858, guid: 4ae61ff5dbf10454e9e9737e79ee56d7, type: 3}
       propertyPath: _bulletTrail
       value: 
@@ -5897,8 +5870,8 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 250481923}
     - target: {fileID: 2483998717015852039, guid: 4ae61ff5dbf10454e9e9737e79ee56d7, type: 3}
-      propertyPath: m_Enabled
-      value: 0
+      propertyPath: m_IncludeLayers.m_Bits
+      value: 768
       objectReference: {fileID: 0}
     - target: {fileID: 2639353399882152409, guid: 4ae61ff5dbf10454e9e9737e79ee56d7, type: 3}
       propertyPath: _bombPool
@@ -5948,14 +5921,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 5028280492121632549, guid: 4ae61ff5dbf10454e9e9737e79ee56d7, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7717568538533079060, guid: 4ae61ff5dbf10454e9e9737e79ee56d7, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1773282485}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4ae61ff5dbf10454e9e9737e79ee56d7, type: 3}
 --- !u!1001 &2478530171610449028
 PrefabInstance:
@@ -6015,7 +5984,7 @@ PrefabInstance:
       objectReference: {fileID: 1961554961}
     - target: {fileID: 7384985821897705781, guid: c927ea7cb1105c744bb4766a664c9b11, type: 3}
       propertyPath: _maxZombieCount
-      value: 7
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7384985821897705781, guid: c927ea7cb1105c744bb4766a664c9b11, type: 3}
       propertyPath: _spawnPoints.Array.size

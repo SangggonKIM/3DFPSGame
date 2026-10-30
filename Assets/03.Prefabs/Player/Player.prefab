@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6363718076392502671}
   - component: {fileID: 2483998717015852039}
+  - component: {fileID: 8146539829253891130}
+  - component: {fileID: 3907246881493973101}
   m_Layer: 0
   m_Name: Blade
   m_TagString: Untagged
@@ -47,12 +49,51 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 128
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 0.07399256, y: 0.036223166, z: 0.9097827}
   m_Center: {x: 0.26380765, y: 0.09260768, z: 0.38005087}
+--- !u!54 &8146539829253891130
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 309774074191874590}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &3907246881493973101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 309774074191874590}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa7dbfe4308938046890af5fc58a0ff8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::KalTriggerEvent
 --- !u!1 &606502613982874023
 GameObject:
   m_ObjectHideFlags: 0
@@ -107,7 +148,6 @@ GameObject:
   - component: {fileID: 4468821784525427929}
   - component: {fileID: 2038509749149369189}
   - component: {fileID: 2206490551365720219}
-  - component: {fileID: 5028280492121632549}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -289,19 +329,6 @@ MonoBehaviour:
   _noramlPov: 60
   _sniperPov: 15
   _sniperZoom: {fileID: 0}
---- !u!114 &5028280492121632549
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4526368946458167702}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94710cb2912cc9d4d9b4106411a06b97, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerMeleeAttack
-  _kalCollider: {fileID: 2483998717015852039}
 --- !u!1 &4543148008486641834
 GameObject:
   m_ObjectHideFlags: 0
@@ -1080,13 +1107,35 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8050249792198741060, guid: 3546254d89cc5fb43a5975ed2395ac1a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7196820312819626861}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 3546254d89cc5fb43a5975ed2395ac1a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3210143405832186671}
   m_SourcePrefab: {fileID: 100100000, guid: 3546254d89cc5fb43a5975ed2395ac1a, type: 3}
 --- !u!4 &6940503455682196142 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 3546254d89cc5fb43a5975ed2395ac1a, type: 3}
   m_PrefabInstance: {fileID: 7483617415150146885}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &7717568538533079060 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 3546254d89cc5fb43a5975ed2395ac1a, type: 3}
+  m_PrefabInstance: {fileID: 7483617415150146885}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3210143405832186671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7717568538533079060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94710cb2912cc9d4d9b4106411a06b97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerMeleeAttack
+  _kalCollider: {fileID: 2483998717015852039}
+  _damage: 10
 --- !u!4 &8619012366403069689 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8050249792198741060, guid: 3546254d89cc5fb43a5975ed2395ac1a, type: 3}
