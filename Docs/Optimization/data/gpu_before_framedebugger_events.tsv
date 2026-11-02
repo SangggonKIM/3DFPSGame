@@ -1,0 +1,238 @@
+# gpu_before: total events 230
+# ClearColor: 2
+# ComputeDispatch: 113
+# DrawProcedural: 29
+# DynamicGeometry: 6
+# GLDraw: 1
+# Mesh: 36
+# SRPBatch: 43
+1	ComputeDispatch	MeshSkinning.SkinOnGPU/MeshSkinning.GPUBatchedSkin	Internal-Skinning
+2	ComputeDispatch	MeshSkinning.SkinOnGPU/MeshSkinning.GPUBatchedSkin	Internal-Skinning
+3	ComputeDispatch	MeshSkinning.SkinOnGPU/MeshSkinning.GPUBatchedSkin	Internal-Skinning
+4	ComputeDispatch	MeshSkinning.SkinOnGPU/MeshSkinning.GPUBatchedSkin	Internal-Skinning
+5	ComputeDispatch	MeshSkinning.SkinOnGPU/MeshSkinning.GPUBatchedSkin	Internal-Skinning
+6	ComputeDispatch	MeshSkinning.SkinOnGPU/MeshSkinning.GPUBatchedSkin	Internal-Skinning
+7	ComputeDispatch	MeshSkinning.SkinOnGPU/MeshSkinning.GPUBatchedSkin	Internal-Skinning
+8	ComputeDispatch	MeshSkinning.SkinOnGPU/MeshSkinning.GPUBatchedSkin	Internal-Skinning
+9	ComputeDispatch	MeshSkinning.SkinOnGPU/MeshSkinning.GPUBatchedSkin	Internal-Skinning
+10	ComputeDispatch	MeshSkinning.SkinOnGPU/MeshSkinning.GPUBatchedSkin	Internal-Skinning
+11	ComputeDispatch	MeshSkinning.SkinOnGPU/MeshSkinning.GPUBatchedSkin	Internal-Skinning
+12	ComputeDispatch	MeshSkinning.SkinOnGPU/MeshSkinning.GPUBatchedSkin	Internal-Skinning
+13	ComputeDispatch	MeshSkinning.SkinOnGPU/MeshSkinning.GPUBatchedSkin	Internal-Skinning
+14	ComputeDispatch	MeshSkinning.SkinOnGPU/MeshSkinning.GPUBatchedSkin	Internal-Skinning
+15	ComputeDispatch	MeshSkinning.SkinOnGPU/MeshSkinning.GPUBatchedSkin	Internal-Skinning
+16	ComputeDispatch	MeshSkinning.SkinOnGPU/MeshSkinning.GPUBatchedSkin	Internal-Skinning
+17	ComputeDispatch	MeshSkinning.SkinOnGPU/MeshSkinning.GPUBatchedSkin	Internal-Skinning
+18	ComputeDispatch	MeshSkinning.SkinOnGPU/MeshSkinning.GPUBatchedSkin	Internal-Skinning
+19	ComputeDispatch	MeshSkinning.SkinOnGPU/MeshSkinning.GPUBatchedSkin	Internal-Skinning
+20	ComputeDispatch	MeshSkinning.SkinOnGPU/MeshSkinning.GPUBatchedSkin	Internal-Skinning
+21	ComputeDispatch	MeshSkinning.SkinOnGPU/MeshSkinning.GPUBatchedSkin	Internal-Skinning
+22	ComputeDispatch	MeshSkinning.SkinOnGPU/MeshSkinning.GPUBatchedSkin	Internal-Skinning
+23	ComputeDispatch	MeshSkinning.SkinOnGPU/MeshSkinning.GPUBatchedSkin	Internal-Skinning
+24	ComputeDispatch	MeshSkinning.SkinOnGPU/MeshSkinning.GPUBatchedSkin	Internal-Skinning
+25	ComputeDispatch	MeshSkinning.SkinOnGPU/MeshSkinning.GPUBatchedSkin	Internal-Skinning
+26	ComputeDispatch	MeshSkinning.SkinOnGPU/MeshSkinning.GPUBatchedSkin	Internal-Skinning
+27	ComputeDispatch	MeshSkinning.SkinOnGPU/MeshSkinning.GPUBatchedSkin	Internal-Skinning
+28	ComputeDispatch	MeshSkinning.SkinOnGPU/MeshSkinning.GPUBatchedSkin	Internal-Skinning
+29	ComputeDispatch	MeshSkinning.SkinOnGPU/MeshSkinning.GPUBatchedSkin	Internal-Skinning
+30	ComputeDispatch	MeshSkinning.SkinOnGPU/MeshSkinning.GPUBatchedSkin	Internal-Skinning
+31	ComputeDispatch	MeshSkinning.SkinOnGPU/MeshSkinning.GPUBatchedSkin	Internal-Skinning
+32	ComputeDispatch	MeshSkinning.SkinOnGPU/MeshSkinning.GPUBatchedSkin	Internal-Skinning
+33	ComputeDispatch	MeshSkinning.SkinOnGPU/MeshSkinning.GPUBatchedSkin	Internal-Skinning
+34	ComputeDispatch	MeshSkinning.SkinOnGPU/MeshSkinning.GPUBatchedSkin	Internal-Skinning
+35	ComputeDispatch	MeshSkinning.SkinOnGPU/MeshSkinning.GPUBatchedSkin	Internal-Skinning
+36	ComputeDispatch	MeshSkinning.SkinOnGPU/MeshSkinning.GPUBatchedSkin	Internal-Skinning
+37	ComputeDispatch	MeshSkinning.SkinOnGPU/MeshSkinning.GPUBatchedSkin	Internal-Skinning
+38	ComputeDispatch	MeshSkinning.SkinOnGPU/MeshSkinning.GPUBatchedSkin	Internal-Skinning
+39	ComputeDispatch	MeshSkinning.SkinOnGPU/MeshSkinning.GPUBatchedSkin	Internal-Skinning
+40	ComputeDispatch	MeshSkinning.SkinOnGPU/MeshSkinning.GPUBatchedSkin	Internal-Skinning
+41	ComputeDispatch	MeshSkinning.SkinOnGPU/MeshSkinning.GPUBatchedSkin	Internal-Skinning
+42	ComputeDispatch	MeshSkinning.SkinOnGPU/MeshSkinning.GPUBatchedSkin	Internal-Skinning
+43	ComputeDispatch	MeshSkinning.SkinOnGPU/MeshSkinning.GPUBatchedSkin	Internal-Skinning
+44	ComputeDispatch	MeshSkinning.SkinOnGPU/MeshSkinning.GPUBatchedSkin	Internal-Skinning
+45	ComputeDispatch	MeshSkinning.SkinOnGPU/MeshSkinning.GPUBatchedSkin	Internal-Skinning
+46	ComputeDispatch	MeshSkinning.SkinOnGPU/MeshSkinning.GPUBatchedSkin	Internal-Skinning
+47	ComputeDispatch	MeshSkinning.SkinOnGPU/MeshSkinning.GPUBatchedSkin	Internal-Skinning
+48	ComputeDispatch	MeshSkinning.SkinOnGPU/MeshSkinning.GPUBatchedSkin	Internal-Skinning
+49	ComputeDispatch	MeshSkinning.SkinOnGPU/MeshSkinning.GPUBatchedSkin	Internal-Skinning
+50	ComputeDispatch	MeshSkinning.SkinOnGPU/MeshSkinning.GPUBatchedSkin	Internal-Skinning
+51	ComputeDispatch	MeshSkinning.SkinOnGPU/MeshSkinning.GPUBatchedSkin	Internal-Skinning
+52	ComputeDispatch	MeshSkinning.SkinOnGPU/MeshSkinning.GPUBatchedSkin	Internal-Skinning
+53	ComputeDispatch	MeshSkinning.SkinOnGPU/MeshSkinning.GPUBatchedSkin	Internal-Skinning
+54	ComputeDispatch	MeshSkinning.SkinOnGPU/MeshSkinning.GPUBatchedSkin	Internal-Skinning
+55	ComputeDispatch	MeshSkinning.SkinOnGPU/MeshSkinning.GPUBatchedSkin	Internal-Skinning
+56	ComputeDispatch	MeshSkinning.SkinOnGPU/MeshSkinning.GPUBatchedSkin	Internal-Skinning
+57	ComputeDispatch	MeshSkinning.SkinOnGPU/MeshSkinning.GPUBatchedSkin	Internal-Skinning
+58	ComputeDispatch	MeshSkinning.SkinOnGPU/MeshSkinning.GPUBatchedSkin	Internal-Skinning
+59	ComputeDispatch	MeshSkinning.SkinOnGPU/MeshSkinning.GPUBatchedSkin	Internal-Skinning
+60	ComputeDispatch	MeshSkinning.SkinOnGPU/MeshSkinning.GPUBatchedSkin	Internal-Skinning
+61	ComputeDispatch	MeshSkinning.SkinOnGPU/MeshSkinning.GPUBatchedSkin	Internal-Skinning
+62	ComputeDispatch	MeshSkinning.SkinOnGPU/MeshSkinning.GPUBatchedSkin	Internal-Skinning
+63	ComputeDispatch	MeshSkinning.SkinOnGPU/MeshSkinning.GPUBatchedSkin	Internal-Skinning
+64	ComputeDispatch	MeshSkinning.SkinOnGPU/MeshSkinning.GPUBatchedSkin	Internal-Skinning
+65	ComputeDispatch	MeshSkinning.SkinOnGPU/MeshSkinning.GPUBatchedSkin	Internal-Skinning
+66	ComputeDispatch	MeshSkinning.SkinOnGPU/MeshSkinning.GPUBatchedSkin	Internal-Skinning
+67	ComputeDispatch	MeshSkinning.SkinOnGPU/MeshSkinning.GPUBatchedSkin	Internal-Skinning
+68	ComputeDispatch	MeshSkinning.SkinOnGPU/MeshSkinning.GPUBatchedSkin	Internal-Skinning
+69	ComputeDispatch	MeshSkinning.SkinOnGPU/MeshSkinning.GPUBatchedSkin	Internal-Skinning
+70	ComputeDispatch	MeshSkinning.SkinOnGPU/MeshSkinning.GPUBatchedSkin	Internal-Skinning
+71	ComputeDispatch	MeshSkinning.SkinOnGPU/MeshSkinning.GPUBatchedSkin	Internal-Skinning
+72	ComputeDispatch	MeshSkinning.SkinOnGPU/MeshSkinning.GPUBatchedSkin	Internal-Skinning
+73	ComputeDispatch	MeshSkinning.SkinOnGPU/MeshSkinning.GPUBatchedSkin	Internal-Skinning
+74	ComputeDispatch	MeshSkinning.SkinOnGPU/MeshSkinning.GPUBatchedSkin	Internal-Skinning
+75	ComputeDispatch	MeshSkinning.SkinOnGPU/MeshSkinning.GPUBatchedSkin	Internal-Skinning
+76	ComputeDispatch	MeshSkinning.SkinOnGPU/MeshSkinning.GPUBatchedSkin	Internal-Skinning
+77	ComputeDispatch	MeshSkinning.SkinOnGPU/MeshSkinning.GPUBatchedSkin	Internal-Skinning
+78	ComputeDispatch	MeshSkinning.SkinOnGPU/MeshSkinning.GPUBatchedSkin	Internal-Skinning
+79	ComputeDispatch	MeshSkinning.SkinOnGPU/MeshSkinning.GPUBatchedSkin	Internal-Skinning
+80	ComputeDispatch	MeshSkinning.SkinOnGPU/MeshSkinning.GPUBatchedSkin	Internal-Skinning
+81	ComputeDispatch	MeshSkinning.SkinOnGPU/MeshSkinning.GPUBatchedSkin	Internal-Skinning
+82	ComputeDispatch	MeshSkinning.SkinOnGPU/MeshSkinning.GPUBatchedSkin	Internal-Skinning
+83	ComputeDispatch	MeshSkinning.SkinOnGPU/MeshSkinning.GPUBatchedSkin	Internal-Skinning
+84	ComputeDispatch	MeshSkinning.SkinOnGPU/MeshSkinning.GPUBatchedSkin	Internal-Skinning
+85	ComputeDispatch	MeshSkinning.SkinOnGPU/MeshSkinning.GPUBatchedSkin	Internal-Skinning
+86	ComputeDispatch	MeshSkinning.SkinOnGPU/MeshSkinning.GPUBatchedSkin	Internal-Skinning
+87	ComputeDispatch	MeshSkinning.SkinOnGPU/MeshSkinning.GPUBatchedSkin	Internal-Skinning
+88	ComputeDispatch	MeshSkinning.SkinOnGPU/MeshSkinning.GPUBatchedSkin	Internal-Skinning
+89	ComputeDispatch	MeshSkinning.SkinOnGPU/MeshSkinning.GPUBatchedSkin	Internal-Skinning
+90	ComputeDispatch	MeshSkinning.SkinOnGPU/MeshSkinning.GPUBatchedSkin	Internal-Skinning
+91	ComputeDispatch	MeshSkinning.SkinOnGPU/MeshSkinning.GPUBatchedSkin	Internal-Skinning
+92	ComputeDispatch	MeshSkinning.SkinOnGPU/MeshSkinning.GPUBatchedSkin	Internal-Skinning
+93	ComputeDispatch	MeshSkinning.SkinOnGPU/MeshSkinning.GPUBatchedSkin	Internal-Skinning
+94	ComputeDispatch	MeshSkinning.SkinOnGPU/MeshSkinning.GPUBatchedSkin	Internal-Skinning
+95	ComputeDispatch	MeshSkinning.SkinOnGPU/MeshSkinning.GPUBatchedSkin	Internal-Skinning
+96	ComputeDispatch	MeshSkinning.SkinOnGPU/MeshSkinning.GPUBatchedSkin	Internal-Skinning
+97	ComputeDispatch	MeshSkinning.SkinOnGPU/MeshSkinning.GPUBatchedSkin	Internal-Skinning
+98	ComputeDispatch	MeshSkinning.SkinOnGPU/MeshSkinning.GPUBatchedSkin	Internal-Skinning
+99	ComputeDispatch	MeshSkinning.SkinOnGPU/MeshSkinning.GPUBatchedSkin	Internal-Skinning
+100	ComputeDispatch	MeshSkinning.SkinOnGPU/MeshSkinning.GPUBatchedSkin	Internal-Skinning
+101	ComputeDispatch	MeshSkinning.SkinOnGPU/MeshSkinning.GPUBatchedSkin	Internal-Skinning
+102	ComputeDispatch	MeshSkinning.SkinOnGPU/MeshSkinning.GPUBatchedSkin	Internal-Skinning
+103	ComputeDispatch	MeshSkinning.SkinOnGPU/MeshSkinning.GPUBatchedSkin	Internal-Skinning
+104	ComputeDispatch	MeshSkinning.SkinOnGPU/MeshSkinning.GPUBatchedSkin	Internal-Skinning
+105	ComputeDispatch	MeshSkinning.SkinOnGPU/MeshSkinning.GPUBatchedSkin	Internal-Skinning
+106	ComputeDispatch	MeshSkinning.SkinOnGPU/MeshSkinning.GPUBatchedSkin	Internal-Skinning
+107	ComputeDispatch	MeshSkinning.SkinOnGPU/MeshSkinning.GPUBatchedSkin	Internal-Skinning
+108	ComputeDispatch	MeshSkinning.SkinOnGPU/MeshSkinning.GPUBatchedSkin	Internal-Skinning
+109	ComputeDispatch	MeshSkinning.SkinOnGPU/MeshSkinning.GPUBatchedSkin	Internal-Skinning
+110	ComputeDispatch	MeshSkinning.SkinOnGPU/MeshSkinning.GPUBatchedSkin	Internal-Skinning
+111	ComputeDispatch	MeshSkinning.SkinOnGPU/MeshSkinning.GPUBatchedSkin	Internal-Skinning
+112	ComputeDispatch	MeshSkinning.SkinOnGPU/MeshSkinning.GPUBatchedSkin	Internal-Skinning
+113	ComputeDispatch	MeshSkinning.SkinOnGPU/MeshSkinning.GPUBatchedSkin	Internal-Skinning
+114	SRPBatch	UniversalRenderPipeline.RenderSingleCameraInternal: MinimapCamera/ExecuteRenderGraph/(RP 7:0) DrawDepthNormalPrepass/RenderLoop.DrawSRPBatcher	
+115	SRPBatch	UniversalRenderPipeline.RenderSingleCameraInternal: MinimapCamera/ExecuteRenderGraph/(RP 7:0) DrawDepthNormalPrepass/RenderLoop.DrawSRPBatcher	
+116	SRPBatch	UniversalRenderPipeline.RenderSingleCameraInternal: MinimapCamera/ExecuteRenderGraph/(RP 7:0) DrawDepthNormalPrepass/RenderLoop.DrawSRPBatcher	
+117	SRPBatch	UniversalRenderPipeline.RenderSingleCameraInternal: MinimapCamera/ExecuteRenderGraph/(RP 7:0) DrawDepthNormalPrepass/RenderLoop.DrawSRPBatcher	
+118	SRPBatch	UniversalRenderPipeline.RenderSingleCameraInternal: MinimapCamera/ExecuteRenderGraph/(RP 7:0) DrawDepthNormalPrepass/RenderLoop.DrawSRPBatcher	
+119	SRPBatch	UniversalRenderPipeline.RenderSingleCameraInternal: MinimapCamera/ExecuteRenderGraph/(RP 7:0) DrawDepthNormalPrepass/RenderLoop.DrawSRPBatcher	
+120	ClearColor	UniversalRenderPipeline.RenderSingleCameraInternal: MinimapCamera/ExecuteRenderGraph	
+121	DrawProcedural	UniversalRenderPipeline.RenderSingleCameraInternal: MinimapCamera/ExecuteRenderGraph/SSAO	
+122	DrawProcedural	UniversalRenderPipeline.RenderSingleCameraInternal: MinimapCamera/ExecuteRenderGraph/SSAO	
+123	DrawProcedural	UniversalRenderPipeline.RenderSingleCameraInternal: MinimapCamera/ExecuteRenderGraph/SSAO	
+124	DrawProcedural	UniversalRenderPipeline.RenderSingleCameraInternal: MinimapCamera/ExecuteRenderGraph/SSAO	
+125	SRPBatch	UniversalRenderPipeline.RenderSingleCameraInternal: MinimapCamera/ExecuteRenderGraph/(RP 8:0) DrawOpaqueObjects/RenderLoop.DrawSRPBatcher	
+126	SRPBatch	UniversalRenderPipeline.RenderSingleCameraInternal: MinimapCamera/ExecuteRenderGraph/(RP 8:0) DrawOpaqueObjects/RenderLoop.DrawSRPBatcher	
+127	SRPBatch	UniversalRenderPipeline.RenderSingleCameraInternal: MinimapCamera/ExecuteRenderGraph/(RP 8:0) DrawOpaqueObjects/RenderLoop.DrawSRPBatcher	
+128	SRPBatch	UniversalRenderPipeline.RenderSingleCameraInternal: MinimapCamera/ExecuteRenderGraph/(RP 8:0) DrawOpaqueObjects/RenderLoop.DrawSRPBatcher	
+129	SRPBatch	UniversalRenderPipeline.RenderSingleCameraInternal: MinimapCamera/ExecuteRenderGraph/(RP 8:0) DrawOpaqueObjects/RenderLoop.DrawSRPBatcher	
+130	SRPBatch	UniversalRenderPipeline.RenderSingleCameraInternal: MinimapCamera/ExecuteRenderGraph/(RP 8:0) DrawOpaqueObjects/RenderLoop.DrawSRPBatcher	
+131	SRPBatch	UniversalRenderPipeline.RenderSingleCameraInternal: MinimapCamera/ExecuteRenderGraph/(RP 8:0) DrawOpaqueObjects/RenderLoop.DrawSRPBatcher	
+132	SRPBatch	UniversalRenderPipeline.RenderSingleCameraInternal: MinimapCamera/ExecuteRenderGraph/(RP 8:0) DrawOpaqueObjects/RenderLoop.DrawSRPBatcher	
+133	SRPBatch	UniversalRenderPipeline.RenderSingleCameraInternal: MinimapCamera/ExecuteRenderGraph/(RP 8:0) DrawOpaqueObjects/RenderLoop.DrawSRPBatcher	
+134	Mesh	UniversalRenderPipeline.RenderSingleCameraInternal: MinimapCamera/ExecuteRenderGraph/(RP 8:0) DrawSkybox/Camera.RenderSkybox	
+135	DrawProcedural	UniversalRenderPipeline.RenderSingleCameraInternal: MinimapCamera/ExecuteRenderGraph/(RP 9:0) CopyColor/CopyColor	
+136	DynamicGeometry	UniversalRenderPipeline.RenderSingleCameraInternal: MinimapCamera/ExecuteRenderGraph/(RP 10:0) DrawTransparentObjects/RenderLoop.Draw	
+137	DynamicGeometry	UniversalRenderPipeline.RenderSingleCameraInternal: MinimapCamera/ExecuteRenderGraph/(RP 10:0) DrawTransparentObjects/RenderLoop.Draw	Dust_v1
+138	DynamicGeometry	UniversalRenderPipeline.RenderSingleCameraInternal: MinimapCamera/ExecuteRenderGraph/(RP 10:0) DrawTransparentObjects/RenderLoop.Draw	
+139	SRPBatch	UniversalRenderPipeline.RenderSingleCameraInternal: MinimapCamera/ExecuteRenderGraph/(RP 10:0) DrawTransparentObjects/RenderLoop.DrawSRPBatcher	
+140	DrawProcedural	UniversalRenderPipeline.RenderSingleCameraInternal: MinimapCamera/ExecuteRenderGraph/(RP 11:0) BlitFinalToBackBuffer	
+141	SRPBatch	UniversalRenderPipeline.RenderSingleCameraInternal: Main Camera/ExecuteRenderGraph/(RP 0:0) Draw Main Light Shadowmap/MainLightShadow/Shadows.DrawSRPBatcher	
+142	SRPBatch	UniversalRenderPipeline.RenderSingleCameraInternal: Main Camera/ExecuteRenderGraph/(RP 0:0) Draw Main Light Shadowmap/MainLightShadow/Shadows.DrawSRPBatcher	
+143	SRPBatch	UniversalRenderPipeline.RenderSingleCameraInternal: Main Camera/ExecuteRenderGraph/(RP 0:0) Draw Main Light Shadowmap/MainLightShadow/Shadows.DrawSRPBatcher	
+144	SRPBatch	UniversalRenderPipeline.RenderSingleCameraInternal: Main Camera/ExecuteRenderGraph/(RP 0:0) Draw Main Light Shadowmap/MainLightShadow/Shadows.DrawSRPBatcher	
+145	SRPBatch	UniversalRenderPipeline.RenderSingleCameraInternal: Main Camera/ExecuteRenderGraph/(RP 0:0) Draw Main Light Shadowmap/MainLightShadow/Shadows.DrawSRPBatcher	
+146	SRPBatch	UniversalRenderPipeline.RenderSingleCameraInternal: Main Camera/ExecuteRenderGraph/(RP 0:0) Draw Main Light Shadowmap/MainLightShadow/Shadows.DrawSRPBatcher	
+147	DrawProcedural	UniversalRenderPipeline.RenderSingleCameraInternal: Main Camera/ExecuteRenderGraph/(RP 1:0) Blit Color LUT/ColorGradingLUT	
+148	SRPBatch	UniversalRenderPipeline.RenderSingleCameraInternal: Main Camera/ExecuteRenderGraph/(RP 2:0) DrawDepthNormalPrepass/RenderLoop.DrawSRPBatcher	
+149	SRPBatch	UniversalRenderPipeline.RenderSingleCameraInternal: Main Camera/ExecuteRenderGraph/(RP 2:0) DrawDepthNormalPrepass/RenderLoop.DrawSRPBatcher	
+150	SRPBatch	UniversalRenderPipeline.RenderSingleCameraInternal: Main Camera/ExecuteRenderGraph/(RP 2:0) DrawDepthNormalPrepass/RenderLoop.DrawSRPBatcher	
+151	SRPBatch	UniversalRenderPipeline.RenderSingleCameraInternal: Main Camera/ExecuteRenderGraph/(RP 2:0) DrawDepthNormalPrepass/RenderLoop.DrawSRPBatcher	
+152	SRPBatch	UniversalRenderPipeline.RenderSingleCameraInternal: Main Camera/ExecuteRenderGraph/(RP 2:0) DrawDepthNormalPrepass/RenderLoop.DrawSRPBatcher	
+153	SRPBatch	UniversalRenderPipeline.RenderSingleCameraInternal: Main Camera/ExecuteRenderGraph/(RP 2:0) DrawDepthNormalPrepass/RenderLoop.DrawSRPBatcher	
+154	SRPBatch	UniversalRenderPipeline.RenderSingleCameraInternal: Main Camera/ExecuteRenderGraph/(RP 2:0) DrawDepthNormalPrepass/RenderLoop.DrawSRPBatcher	
+155	SRPBatch	UniversalRenderPipeline.RenderSingleCameraInternal: Main Camera/ExecuteRenderGraph/(RP 2:0) DrawDepthNormalPrepass/RenderLoop.DrawSRPBatcher	
+156	SRPBatch	UniversalRenderPipeline.RenderSingleCameraInternal: Main Camera/ExecuteRenderGraph/(RP 2:0) DrawDepthNormalPrepass/RenderLoop.DrawSRPBatcher	
+157	SRPBatch	UniversalRenderPipeline.RenderSingleCameraInternal: Main Camera/ExecuteRenderGraph/(RP 2:0) DrawDepthNormalPrepass/RenderLoop.DrawSRPBatcher	
+158	ClearColor	UniversalRenderPipeline.RenderSingleCameraInternal: Main Camera/ExecuteRenderGraph	
+159	DrawProcedural	UniversalRenderPipeline.RenderSingleCameraInternal: Main Camera/ExecuteRenderGraph/SSAO	
+160	DrawProcedural	UniversalRenderPipeline.RenderSingleCameraInternal: Main Camera/ExecuteRenderGraph/SSAO	
+161	DrawProcedural	UniversalRenderPipeline.RenderSingleCameraInternal: Main Camera/ExecuteRenderGraph/SSAO	
+162	DrawProcedural	UniversalRenderPipeline.RenderSingleCameraInternal: Main Camera/ExecuteRenderGraph/SSAO	
+163	SRPBatch	UniversalRenderPipeline.RenderSingleCameraInternal: Main Camera/ExecuteRenderGraph/(RP 3:0) DrawOpaqueObjects/RenderLoop.DrawSRPBatcher	
+164	SRPBatch	UniversalRenderPipeline.RenderSingleCameraInternal: Main Camera/ExecuteRenderGraph/(RP 3:0) DrawOpaqueObjects/RenderLoop.DrawSRPBatcher	
+165	SRPBatch	UniversalRenderPipeline.RenderSingleCameraInternal: Main Camera/ExecuteRenderGraph/(RP 3:0) DrawOpaqueObjects/RenderLoop.DrawSRPBatcher	
+166	SRPBatch	UniversalRenderPipeline.RenderSingleCameraInternal: Main Camera/ExecuteRenderGraph/(RP 3:0) DrawOpaqueObjects/RenderLoop.DrawSRPBatcher	
+167	SRPBatch	UniversalRenderPipeline.RenderSingleCameraInternal: Main Camera/ExecuteRenderGraph/(RP 3:0) DrawOpaqueObjects/RenderLoop.DrawSRPBatcher	
+168	SRPBatch	UniversalRenderPipeline.RenderSingleCameraInternal: Main Camera/ExecuteRenderGraph/(RP 3:0) DrawOpaqueObjects/RenderLoop.DrawSRPBatcher	
+169	SRPBatch	UniversalRenderPipeline.RenderSingleCameraInternal: Main Camera/ExecuteRenderGraph/(RP 3:0) DrawOpaqueObjects/RenderLoop.DrawSRPBatcher	
+170	SRPBatch	UniversalRenderPipeline.RenderSingleCameraInternal: Main Camera/ExecuteRenderGraph/(RP 3:0) DrawOpaqueObjects/RenderLoop.DrawSRPBatcher	
+171	SRPBatch	UniversalRenderPipeline.RenderSingleCameraInternal: Main Camera/ExecuteRenderGraph/(RP 3:0) DrawOpaqueObjects/RenderLoop.DrawSRPBatcher	
+172	SRPBatch	UniversalRenderPipeline.RenderSingleCameraInternal: Main Camera/ExecuteRenderGraph/(RP 3:0) DrawOpaqueObjects/RenderLoop.DrawSRPBatcher	
+173	SRPBatch	UniversalRenderPipeline.RenderSingleCameraInternal: Main Camera/ExecuteRenderGraph/(RP 3:0) DrawOpaqueObjects/RenderLoop.DrawSRPBatcher	
+174	Mesh	UniversalRenderPipeline.RenderSingleCameraInternal: Main Camera/ExecuteRenderGraph/(RP 3:0) DrawSkybox/Camera.RenderSkybox	
+175	DrawProcedural	UniversalRenderPipeline.RenderSingleCameraInternal: Main Camera/ExecuteRenderGraph/(RP 4:0) CopyColor/CopyColor	
+176	Mesh	UniversalRenderPipeline.RenderSingleCameraInternal: Main Camera/ExecuteRenderGraph/(RP 5:0) DrawTransparentObjects/RenderLoop.Draw/Canvas.RenderSubBatch	
+177	Mesh	UniversalRenderPipeline.RenderSingleCameraInternal: Main Camera/ExecuteRenderGraph/(RP 5:0) DrawTransparentObjects/RenderLoop.Draw/Canvas.RenderSubBatch	
+178	Mesh	UniversalRenderPipeline.RenderSingleCameraInternal: Main Camera/ExecuteRenderGraph/(RP 5:0) DrawTransparentObjects/RenderLoop.Draw/Canvas.RenderSubBatch	
+179	Mesh	UniversalRenderPipeline.RenderSingleCameraInternal: Main Camera/ExecuteRenderGraph/(RP 5:0) DrawTransparentObjects/RenderLoop.Draw/Canvas.RenderSubBatch	
+180	DynamicGeometry	UniversalRenderPipeline.RenderSingleCameraInternal: Main Camera/ExecuteRenderGraph/(RP 5:0) DrawTransparentObjects/RenderLoop.Draw	
+181	Mesh	UniversalRenderPipeline.RenderSingleCameraInternal: Main Camera/ExecuteRenderGraph/(RP 5:0) DrawTransparentObjects/RenderLoop.Draw/Canvas.RenderSubBatch	
+182	Mesh	UniversalRenderPipeline.RenderSingleCameraInternal: Main Camera/ExecuteRenderGraph/(RP 5:0) DrawTransparentObjects/RenderLoop.Draw/Canvas.RenderSubBatch	
+183	Mesh	UniversalRenderPipeline.RenderSingleCameraInternal: Main Camera/ExecuteRenderGraph/(RP 5:0) DrawTransparentObjects/RenderLoop.Draw/Canvas.RenderSubBatch	
+184	Mesh	UniversalRenderPipeline.RenderSingleCameraInternal: Main Camera/ExecuteRenderGraph/(RP 5:0) DrawTransparentObjects/RenderLoop.Draw/Canvas.RenderSubBatch	
+185	Mesh	UniversalRenderPipeline.RenderSingleCameraInternal: Main Camera/ExecuteRenderGraph/(RP 5:0) DrawTransparentObjects/RenderLoop.Draw/Canvas.RenderSubBatch	
+186	Mesh	UniversalRenderPipeline.RenderSingleCameraInternal: Main Camera/ExecuteRenderGraph/(RP 5:0) DrawTransparentObjects/RenderLoop.Draw/Canvas.RenderSubBatch	
+187	Mesh	UniversalRenderPipeline.RenderSingleCameraInternal: Main Camera/ExecuteRenderGraph/(RP 5:0) DrawTransparentObjects/RenderLoop.Draw/Canvas.RenderSubBatch	
+188	Mesh	UniversalRenderPipeline.RenderSingleCameraInternal: Main Camera/ExecuteRenderGraph/(RP 5:0) DrawTransparentObjects/RenderLoop.Draw/Canvas.RenderSubBatch	
+189	DynamicGeometry	UniversalRenderPipeline.RenderSingleCameraInternal: Main Camera/ExecuteRenderGraph/(RP 5:0) DrawTransparentObjects/RenderLoop.Draw	Dust_v1
+190	Mesh	UniversalRenderPipeline.RenderSingleCameraInternal: Main Camera/ExecuteRenderGraph/(RP 5:0) DrawTransparentObjects/RenderLoop.Draw/Canvas.RenderSubBatch	
+191	Mesh	UniversalRenderPipeline.RenderSingleCameraInternal: Main Camera/ExecuteRenderGraph/(RP 5:0) DrawTransparentObjects/RenderLoop.Draw/Canvas.RenderSubBatch	
+192	Mesh	UniversalRenderPipeline.RenderSingleCameraInternal: Main Camera/ExecuteRenderGraph/(RP 5:0) DrawTransparentObjects/RenderLoop.Draw/Canvas.RenderSubBatch	
+193	Mesh	UniversalRenderPipeline.RenderSingleCameraInternal: Main Camera/ExecuteRenderGraph/(RP 5:0) DrawTransparentObjects/RenderLoop.Draw/Canvas.RenderSubBatch	
+194	Mesh	UniversalRenderPipeline.RenderSingleCameraInternal: Main Camera/ExecuteRenderGraph/(RP 5:0) DrawTransparentObjects/RenderLoop.Draw/Canvas.RenderSubBatch	
+195	Mesh	UniversalRenderPipeline.RenderSingleCameraInternal: Main Camera/ExecuteRenderGraph/(RP 5:0) DrawTransparentObjects/RenderLoop.Draw/Canvas.RenderSubBatch	
+196	Mesh	UniversalRenderPipeline.RenderSingleCameraInternal: Main Camera/ExecuteRenderGraph/(RP 5:0) DrawTransparentObjects/RenderLoop.Draw/Canvas.RenderSubBatch	
+197	Mesh	UniversalRenderPipeline.RenderSingleCameraInternal: Main Camera/ExecuteRenderGraph/(RP 5:0) DrawTransparentObjects/RenderLoop.Draw/Canvas.RenderSubBatch	
+198	DynamicGeometry	UniversalRenderPipeline.RenderSingleCameraInternal: Main Camera/ExecuteRenderGraph/(RP 5:0) DrawTransparentObjects/RenderLoop.Draw	
+199	Mesh	UniversalRenderPipeline.RenderSingleCameraInternal: Main Camera/ExecuteRenderGraph/(RP 5:0) DrawTransparentObjects/RenderLoop.Draw/Canvas.RenderSubBatch	
+200	DrawProcedural	UniversalRenderPipeline.RenderSingleCameraInternal: Main Camera/ExecuteRenderGraph/Bloom/RG_BloomPrefilter	
+201	DrawProcedural	UniversalRenderPipeline.RenderSingleCameraInternal: Main Camera/ExecuteRenderGraph/Bloom/RG_BloomDownsample	
+202	DrawProcedural	UniversalRenderPipeline.RenderSingleCameraInternal: Main Camera/ExecuteRenderGraph/Bloom/RG_BloomDownsample	
+203	DrawProcedural	UniversalRenderPipeline.RenderSingleCameraInternal: Main Camera/ExecuteRenderGraph/Bloom/RG_BloomDownsample	
+204	DrawProcedural	UniversalRenderPipeline.RenderSingleCameraInternal: Main Camera/ExecuteRenderGraph/Bloom/RG_BloomDownsample	
+205	DrawProcedural	UniversalRenderPipeline.RenderSingleCameraInternal: Main Camera/ExecuteRenderGraph/Bloom/RG_BloomDownsample	
+206	DrawProcedural	UniversalRenderPipeline.RenderSingleCameraInternal: Main Camera/ExecuteRenderGraph/Bloom/RG_BloomDownsample	
+207	DrawProcedural	UniversalRenderPipeline.RenderSingleCameraInternal: Main Camera/ExecuteRenderGraph/Bloom/RG_BloomDownsample	
+208	DrawProcedural	UniversalRenderPipeline.RenderSingleCameraInternal: Main Camera/ExecuteRenderGraph/Bloom/RG_BloomDownsample	
+209	DrawProcedural	UniversalRenderPipeline.RenderSingleCameraInternal: Main Camera/ExecuteRenderGraph/Bloom/RG_BloomDownsample	
+210	DrawProcedural	UniversalRenderPipeline.RenderSingleCameraInternal: Main Camera/ExecuteRenderGraph/Bloom/RG_BloomDownsample	
+211	DrawProcedural	UniversalRenderPipeline.RenderSingleCameraInternal: Main Camera/ExecuteRenderGraph/Bloom/RG_BloomUpsample	
+212	DrawProcedural	UniversalRenderPipeline.RenderSingleCameraInternal: Main Camera/ExecuteRenderGraph/Bloom/RG_BloomUpsample	
+213	DrawProcedural	UniversalRenderPipeline.RenderSingleCameraInternal: Main Camera/ExecuteRenderGraph/Bloom/RG_BloomUpsample	
+214	DrawProcedural	UniversalRenderPipeline.RenderSingleCameraInternal: Main Camera/ExecuteRenderGraph/Bloom/RG_BloomUpsample	
+215	DrawProcedural	UniversalRenderPipeline.RenderSingleCameraInternal: Main Camera/ExecuteRenderGraph/Bloom/RG_BloomUpsample	
+216	DrawProcedural	UniversalRenderPipeline.RenderSingleCameraInternal: Main Camera/ExecuteRenderGraph/(RP 6:0) RG_UberPost	
+217	GLDraw	UniversalRenderPipeline.RenderSingleCameraInternal: Main Camera/ExecuteRenderGraph/(RP 6:1) DrawScreenSpaceUI/UI.RenderOverlays	
+218	Mesh	UniversalRenderPipeline.RenderSingleCameraInternal: Main Camera/ExecuteRenderGraph/(RP 6:1) DrawScreenSpaceUI/UI.RenderOverlays/Canvas.RenderOverlays	
+219	Mesh	UniversalRenderPipeline.RenderSingleCameraInternal: Main Camera/ExecuteRenderGraph/(RP 6:1) DrawScreenSpaceUI/UI.RenderOverlays/Canvas.RenderOverlays	
+220	Mesh	UniversalRenderPipeline.RenderSingleCameraInternal: Main Camera/ExecuteRenderGraph/(RP 6:1) DrawScreenSpaceUI/UI.RenderOverlays/Canvas.RenderOverlays	
+221	Mesh	UniversalRenderPipeline.RenderSingleCameraInternal: Main Camera/ExecuteRenderGraph/(RP 6:1) DrawScreenSpaceUI/UI.RenderOverlays/Canvas.RenderOverlays	
+222	Mesh	UniversalRenderPipeline.RenderSingleCameraInternal: Main Camera/ExecuteRenderGraph/(RP 6:1) DrawScreenSpaceUI/UI.RenderOverlays/Canvas.RenderOverlays	
+223	Mesh	UniversalRenderPipeline.RenderSingleCameraInternal: Main Camera/ExecuteRenderGraph/(RP 6:1) DrawScreenSpaceUI/UI.RenderOverlays/Canvas.RenderOverlays	
+224	Mesh	UniversalRenderPipeline.RenderSingleCameraInternal: Main Camera/ExecuteRenderGraph/(RP 6:1) DrawScreenSpaceUI/UI.RenderOverlays/Canvas.RenderOverlays	
+225	Mesh	UniversalRenderPipeline.RenderSingleCameraInternal: Main Camera/ExecuteRenderGraph/(RP 6:1) DrawScreenSpaceUI/UI.RenderOverlays/Canvas.RenderOverlays	
+226	Mesh	UniversalRenderPipeline.RenderSingleCameraInternal: Main Camera/ExecuteRenderGraph/(RP 6:1) DrawScreenSpaceUI/UI.RenderOverlays/Canvas.RenderOverlays	
+227	Mesh	UniversalRenderPipeline.RenderSingleCameraInternal: Main Camera/ExecuteRenderGraph/(RP 6:1) DrawScreenSpaceUI/UI.RenderOverlays/Canvas.RenderOverlays	
+228	Mesh	UniversalRenderPipeline.RenderSingleCameraInternal: Main Camera/ExecuteRenderGraph/(RP 6:1) DrawScreenSpaceUI/UI.RenderOverlays/Canvas.RenderOverlays	
+229	Mesh	UniversalRenderPipeline.RenderSingleCameraInternal: Main Camera/ExecuteRenderGraph/(RP 6:1) DrawScreenSpaceUI/UI.RenderOverlays/Canvas.RenderOverlays	
+230	Mesh	UniversalRenderPipeline.RenderSingleCameraInternal: Main Camera/ExecuteRenderGraph/(RP 6:1) DrawScreenSpaceUI/UI.RenderOverlays/Canvas.RenderOverlays	

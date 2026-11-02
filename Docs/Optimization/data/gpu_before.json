@@ -1,0 +1,26 @@
+{
+  "label": "gpu_before (= cpu_after 측정)",
+  "metrics": {
+    "Main Thread (ms)": {"avg": 13.92, "p50": 13.615, "p95": 15.564, "max": 21.645, "frames": 184},
+    "PlayerLoop (ms)": {"avg": 4.817, "p50": 4.772, "p95": 5.447, "max": 5.917, "frames": 184},
+    "BehaviourUpdate (ms)": {"avg": 0.153, "p50": 0.148, "p95": 0.187, "max": 0.257, "frames": 184},
+    "CPU Main Thread Frame Time (ms)": {"avg": 4.822, "p50": 4.781, "p95": 5.447, "max": 5.917, "frames": 184},
+    "CPU Render Thread Frame Time (ms)": {"avg": 2.813, "p50": 2.784, "p95": 3.235, "max": 3.89, "frames": 184},
+    "GPU Frame Time (ms)": {"avg": 5.819, "p50": 7.377, "p95": 8.409, "max": 9.452, "frames": 184},
+    "GC Allocated In Frame": {"avg": 84233.207, "p50": 57419, "p95": 60307, "max": 3845726, "frames": 184},
+    "Draw Calls Count": {"avg": 1728.315, "p50": 1733, "p95": 3468, "max": 3479, "frames": 184},
+    "Batches Count": {"avg": 1638.38, "p50": 1642, "p95": 3292, "max": 3306, "frames": 184},
+    "SetPass Calls Count": {"avg": 93.859, "p50": 93, "p95": 194, "max": 195, "frames": 184},
+    "Triangles Count": {"avg": 3814268.793, "p50": 3857650, "p95": 7717022, "max": 7722394, "frames": 184},
+    "Vertices Count": {"avg": 2770895.723, "p50": 2812962, "p95": 5627902, "max": 5633540, "frames": 184},
+    "Shadow Casters Count": {"avg": 718.935, "p50": 719, "p95": 1438, "max": 1442, "frames": 184},
+    "Render Textures Count": {"avg": 88, "p50": 88, "p95": 88, "max": 88, "frames": 184},
+    "Render Textures Bytes": {"avg": 193471960, "p50": 193471960, "p95": 193471960, "max": 193471960, "frames": 184},
+    "Total Used Memory": {"avg": 7380961567.255, "p50": 7379779005, "p95": 7495200567, "max": 7502727313, "frames": 184},
+    "GC Used Memory": {"avg": 891896765.217, "p50": 892817408, "p95": 895623168, "max": 896008192, "frames": 184},
+    "Gfx Used Memory": {"avg": 1152476032.848, "p50": 1147393408, "p95": 1178950800, "max": 1184188280, "frames": 184},
+    "Texture Memory": {"avg": 756171393, "p50": 756171393, "p95": 756171393, "max": 756171393, "frames": 184},
+    "Texture Count": {"avg": 1217, "p50": 1217, "p95": 1217, "max": 1217, "frames": 184},
+    "Mesh Memory": {"avg": 128835066, "p50": 128835066, "p95": 128835066, "max": 128835066, "frames": 184}
+  }
+}
