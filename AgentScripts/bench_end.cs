@@ -1,7 +1,7 @@
-// 최적화 전후 측정 종료: 최근 300프레임 통계를 JSON으로 저장하고 Game(Stats)/Profiler 창을 캡처한다. (eval_file로 실행)
+﻿// 최적화 전후 측정 종료: 최근 300프레임 통계를 JSON으로 저장하고 Game(Stats)/Profiler 창을 캡처한다. (eval_file로 실행)
 // LABEL은 실행 전에 바꾼다.
 
-const string Label = "gpu_after";
+const string Label = "mem_after";
 const string Dir = "Docs/Optimization";
 
 var list = System.AppDomain.CurrentDomain.GetData("bench") as System.Collections.Generic.List<(string, Unity.Profiling.ProfilerRecorder)>;

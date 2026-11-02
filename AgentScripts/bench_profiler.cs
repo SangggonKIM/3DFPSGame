@@ -1,5 +1,5 @@
-// 일시정지 상태에서 Profiler 창(Hierarchy 포함)을 캡처한다. (eval_file로 실행, LABEL은 실행 전에 바꾼다)
-const string Label = "gpu_after";
+﻿// 일시정지 상태에서 Profiler 창(Hierarchy 포함)을 캡처한다. (eval_file로 실행, LABEL은 실행 전에 바꾼다)
+const string Label = "mem_after";
 var type = typeof(UnityEditor.EditorWindow).Assembly.GetType("UnityEditor.ProfilerWindow");
 var window = (UnityEditor.EditorWindow)Resources.FindObjectsOfTypeAll(type)[0];
 Rect pos = window.position;
