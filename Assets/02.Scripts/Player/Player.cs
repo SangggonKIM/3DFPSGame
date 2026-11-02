@@ -20,12 +20,16 @@ public class Player : MonoBehaviour, IDamageable
     // Action 자료형: 함수(들)를 저장할 수 있다.
     public event Action OnDamaged = null;
 
+    private void Awake()
+    {
+        // 다른 컴포넌트의 Start에서 체력을 읽을 수 있도록 Awake에서 초기화한다.
+        _health = _maxHealth;
+    }
+
     public void Start()
     {
         _animator = GetComponentInChildren<Animator>();
         _injuredLayerIndex = _animator.GetLayerIndex("Injured");
-
-        _health = _maxHealth;
     }
 
     private void Update()
@@ -61,10 +65,10 @@ public class Player : MonoBehaviour, IDamageable
 
         OnDamaged?.Invoke();
 
-        Debug.Log($"플레이어가 맞았다. 대미지 {damageInfo.Value}, 남은 체력 {_health}");
+        GameLogger.Log($"플레이어가 맞았다. 대미지 {damageInfo.Value}, 남은 체력 {_health}");
         if (_health <= 0f)
         {
-            Debug.Log("플레이어가 쓰러졌다.");
+            GameLogger.Log("플레이어가 쓰러졌다.");
             GameManager.Instance.GameOver();
         }
     }

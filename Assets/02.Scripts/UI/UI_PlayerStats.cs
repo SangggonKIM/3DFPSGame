@@ -17,6 +17,7 @@ public class UI_PlayerStats : MonoBehaviour
     private void Start()
     {
         _player.OnDamaged += RefreshHealth;
+        RefreshHealth();
     }
 
     private void LateUpdate()
@@ -30,7 +31,7 @@ public class UI_PlayerStats : MonoBehaviour
         // 유튜브 구독 패턴은 유튜버가 영상을 올릴 때 이를 구독 중인 여러 구독자에 알려주는 패턴이다.
         // C#에서는 이것을 Action으로 구현할 수 있다.
 
-        RefreshHealth();
+        // 체력은 OnDamaged 이벤트로 갱신되므로 여기서는 계속 변하는 스태미나만 갱신한다.
         _slider[1].value = _playerMove.Stamina / PlayerMove.MaxStamina;
     }
 

@@ -9,10 +9,15 @@ public class PlayerZoom : MonoBehaviour
     [SerializeField] private float _sniperPov = 15f;
     [SerializeField] private GameObject _sniperZoom;
 
+    private Camera _camera;
+    private bool _isZooming;
+
 
     private void Start()
     {
         _player = GetComponent<Player>();
+        _camera = Camera.main;
+        ApplyZoom(false);
     }
 
     private void Update()
@@ -20,7 +25,15 @@ public class PlayerZoom : MonoBehaviour
         if (GameManager.Instance.State != GameState.Playing) return;
 
         bool isZooming = _player.WeaponMode == WeaponMode.Sniper && Input.GetMouseButton(1);
+        // 상태가 바뀐 프레임에만 UI와 카메라를 갱신한다.
+        if (isZooming == _isZooming) return;
+        ApplyZoom(isZooming);
+    }
+
+    private void ApplyZoom(bool isZooming)
+    {
+        _isZooming = isZooming;
         _sniperZoom.SetActive(isZooming);
-        Camera.main.fieldOfView = isZooming ? _sniperPov : _noramlPov;
+        _camera.fieldOfView = isZooming ? _sniperPov : _noramlPov;
     }
 }

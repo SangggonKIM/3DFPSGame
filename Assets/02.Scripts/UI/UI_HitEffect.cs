@@ -9,11 +9,14 @@ public class UI_HitEffect : MonoBehaviour
     [SerializeField] private float _fadeTime = 0.7f;
 
     private Image _image;
+    private Coroutine _effectCoroutine;
+    private WaitForSeconds _flashWait;
 
     private void Awake()
     {
         _image = GetComponent<Image>();
         _image.enabled = false;
+        _flashWait = new WaitForSeconds(_flashTime);
     }
 
     private void Start()
@@ -33,20 +36,27 @@ public class UI_HitEffect : MonoBehaviour
     public void Flash(float alpha)
     {
         SetAlpha(alpha);
-        StartCoroutine(Flash_Coroutine());
+        RestartEffect(Flash_Coroutine());
     }
 
     public void Fade(float alpha)
     {
         SetAlpha(alpha);
-        StartCoroutine(Fade_Coroutine());
+        RestartEffect(Fade_Coroutine());
+    }
+
+    // 연속으로 맞아도 코루틴이 겹쳐 쌓이지 않도록 이전 효과를 멈추고 새로 시작한다.
+    private void RestartEffect(IEnumerator routine)
+    {
+        if (_effectCoroutine != null) StopCoroutine(_effectCoroutine);
+        _effectCoroutine = StartCoroutine(routine);
     }
 
     public IEnumerator Flash_Coroutine()
     {
         _image.enabled = true;
 
-        yield return new WaitForSeconds(_flashTime);
+        yield return _flashWait;
 
         _image.enabled = false;
     }

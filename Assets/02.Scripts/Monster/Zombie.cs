@@ -38,6 +38,7 @@ public class Zombie : MonoBehaviour, IDamageable
     [SerializeField] private float _jumpHeight = 2f; // 포물선 최고점 높이
     [SerializeField] private float _jumpSpeed = 6f; // 점프 중 수평 이동 속도
     [SerializeField] private float _jumpWindupTime = 0.5f; // 도약 전 웅크리는 시간 (애니메이션의 발이 떨어지는 시점에 맞춘다)
+    [SerializeField] private float _repathInterval = 0.2f; // 경로 재계산 주기 (매 프레임 SetDestination 방지)
     [SerializeField] private NavMeshAgent _agent;
     private float _health; // 체력
 
@@ -47,10 +48,23 @@ public class Zombie : MonoBehaviour, IDamageable
 
     public event Action OnHit;
     private Vector3 _startPosition;
-    private GameObject _player;
+    private Transform _player;
+    private IDamageable _playerDamageable;
     private float _attackTimer = 0f;
     private const float PatrolDistance = 5f;
+    private const float HitStunTime = 0.5f;
+    private const float DeathDelay = 0.5f;
     private float _patrolTimer = 0f;
+    private float _repathTimer = 0f;
+
+    // 코루틴 대기 객체는 매번 new 하지 않고 재사용한다.
+    private WaitForSeconds _hitStunWait;
+    private WaitForSeconds _deathWait;
+    private WaitForSeconds _jumpWindupWait;
+
+    // 피 이펙트는 좀비마다 하나만 만들어 재생만 반복한다.
+    private Transform _bloodSpray;
+    private ParticleSystem[] _bloodSprayParticles;
     private Animator _animator;
     private readonly int _idleToMove = Animator.StringToHash("IdleToMove");
     private readonly int _moveToIdle = Animator.StringToHash("MoveToIdle");
@@ -76,6 +90,37 @@ public class Zombie : MonoBehaviour, IDamageable
         _animator = GetComponentInChildren<Animator>();
         // 링크 구간은 에이전트가 직선으로 건너지 않고 코드에서 직접 점프시킨다.
         _agent.autoTraverseOffMeshLink = false;
+
+        _hitStunWait = new WaitForSeconds(HitStunTime);
+        _deathWait = new WaitForSeconds(DeathDelay);
+        _jumpWindupWait = new WaitForSeconds(_jumpWindupTime);
+
+        CreateBloodSpray();
+    }
+
+    // 원본 프리팹은 무한 반복(loop) 파티클이라, 맞을 때마다 생성하면 파괴되지 않고 계속 쌓인다.
+    // 한 번만 만들고 반복을 끈 뒤, 피격 시 처음부터 다시 재생한다.
+    private void CreateBloodSpray()
+    {
+        _bloodSpray = Instantiate(_bloodSprayPrefab, transform).transform;
+        _bloodSprayParticles = _bloodSpray.GetComponentsInChildren<ParticleSystem>();
+        foreach (ParticleSystem particle in _bloodSprayParticles)
+        {
+            ParticleSystem.MainModule main = particle.main;
+            main.loop = false;
+            main.playOnAwake = false;
+            particle.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+        }
+    }
+
+    private void PlayBloodSpray()
+    {
+        _bloodSpray.SetPositionAndRotation(transform.position, transform.rotation);
+        foreach (ParticleSystem particle in _bloodSprayParticles)
+        {
+            particle.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+            particle.Play(true);
+        }
     }
 
     internal void Initialize(ZombiePool owner)
@@ -91,11 +136,14 @@ public class Zombie : MonoBehaviour, IDamageable
         _startPosition = position;
         _attackTimer = 0f;
         _patrolTimer = 0f;
+        _repathTimer = 0f;
         _state = ZombieState.Patrol;
 
         if (_player == null)
         {
-            _player = GameObject.FindGameObjectWithTag("Player");
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+            _player = player.transform;
+            _playerDamageable = player.GetComponent<IDamageable>();
         }
 
         IsInUse = true;
@@ -140,6 +188,7 @@ public class Zombie : MonoBehaviour, IDamageable
         }
 
         _health -= damageInfo.Value;
+        OnHit?.Invoke();
 
         // 점프 중에는 멈칫하지 않는다. 코루틴이 끊기면 링크 위에 갇히기 때문이다.
         bool isJumping = _state == ZombieState.Jump;
@@ -150,23 +199,18 @@ public class Zombie : MonoBehaviour, IDamageable
 
         if (_health > 0f)
         {
-            OnHit?.Invoke();
             // Todo. 맞은 부위에 피 이펙트를 실행하고 싶다.
-            GameObject bloodSpray = Instantiate(_bloodSprayPrefab, transform);
-            bloodSpray.transform.position = transform.position;
-            bloodSpray.transform.forward = transform.forward;
+            PlayBloodSpray();
 
             if (isJumping) return;
 
             // 잠깐 멈칫 하고 싶다!
-            Debug.Log($"{_state} -> Hit");
-            _state = ZombieState.Hit;
+            ChangeState(ZombieState.Hit);
             StartCoroutine(Hit_Coroutine());
         }
         else
         {
-            Debug.Log($"{_state} -> Death");
-            _state = ZombieState.Death;
+            ChangeState(ZombieState.Death);
             Died?.Invoke(this);
             _animator.SetTrigger(_death);
             StartCoroutine(Death_Coroutine());
@@ -177,18 +221,17 @@ public class Zombie : MonoBehaviour, IDamageable
     {
         StopAgent();
         _animator.SetTrigger(_hit);
-        yield return new WaitForSeconds(0.5f); // 잠깐 멈칫한다!
+        yield return _hitStunWait; // 잠깐 멈칫한다!
 
         // 맞았으니 쫓아온다.
-        Debug.Log($"{_state} -> Trace");
-        _state = ZombieState.Trace;
+        ChangeState(ZombieState.Trace);
     }
 
 
     private IEnumerator Death_Coroutine()
     {
         StopAgent();
-        yield return new WaitForSeconds(0.5f);
+        yield return _deathWait;
         Owner.ReturnZombie(this);
     }
 
@@ -197,23 +240,19 @@ public class Zombie : MonoBehaviour, IDamageable
         StopAgent();
 
         // 플레이어 가까워지면 Trace 상태로 전이한다.
-        float distance = Vector3.Distance(transform.position, _player.transform.position);
-        if (distance <= _detectDistance)
+        if (IsWithin(_player.position, _detectDistance))
         {
-            Debug.Log($"{_state} -> Trace");
             _animator.SetTrigger(_idleToMove);
-            _state = ZombieState.Trace;
+            ChangeState(ZombieState.Trace);
         }
     }
 
     private void Patrol()
     {
         // 순찰 중 플레이어를 발견하면 현재 위치에서 바로 추격한다.
-        if (_player != null &&
-            Vector3.Distance(transform.position, _player.transform.position) <= _detectDistance)
+        if (_player != null && IsWithin(_player.position, _detectDistance))
         {
-            Debug.Log($"{_state} -> Trace");
-            _state = ZombieState.Trace;
+            ChangeState(ZombieState.Trace);
             return;
         }
 
@@ -244,42 +283,61 @@ public class Zombie : MonoBehaviour, IDamageable
 
         _animator.SetTrigger(_idleToMove);
         // 처음 자리에서 너무 멀어지면 돌아간다.
-        if (Vector3.Distance(transform.position, _startPosition) > _comebackDistance)
+        if (!IsWithin(_startPosition, _comebackDistance))
         {
-            Debug.Log($"{_state} -> Comeback");
-            _state = ZombieState.Comeback;
+            ChangeState(ZombieState.Comeback);
             return;
         }
 
         // 플레이어가 공격 거리 안이면 공격한다.
-        if (Vector3.Distance(transform.position, _player.transform.position) <= _attackRange)
+        if (IsWithin(_player.position, _attackRange))
         {
             _attackTimer = 0f;
-            Debug.Log($"{_state} -> Attack");
             _animator.SetTrigger(_moveToAttackDelay);
-            _state = ZombieState.Attack;
+            ChangeState(ZombieState.Attack);
             return;
         }
 
         // SetDestination은 목적지 설정
         // - 호출할 때마다 목적지를 향해 조금씩 이동 (X)
         // - 한 번 세팅하면 내부에서 계속해서 이동 (O)
-        _agent.SetDestination(_player.transform.position); // 한줄로 알아서 회전하고 플레이어 바라보며 따라간다.
+        MoveTo(_player.position); // 한줄로 알아서 회전하고 플레이어 바라보며 따라간다.
     }
 
     private void Comeback()
     {
         if (TryStartJump()) return;
 
-        if (Vector3.Distance(transform.position, _startPosition) < _agent.stoppingDistance)
+        if (IsWithin(_startPosition, _agent.stoppingDistance))
         {
             _patrolTimer = 0f;
-            Debug.Log($"{_state} -> Patrol");
-            _state = ZombieState.Patrol;
+            ChangeState(ZombieState.Patrol);
             return;
         }
 
-        _agent.SetDestination(_startPosition);
+        MoveTo(_startPosition);
+    }
+
+    // 경로 계산은 비싸므로 _repathInterval마다 한 번만 목적지를 갱신한다.
+    private void MoveTo(Vector3 destination)
+    {
+        _repathTimer -= Time.deltaTime;
+        if (_repathTimer > 0f && _agent.hasPath) return;
+
+        _repathTimer = _repathInterval;
+        _agent.SetDestination(destination);
+    }
+
+    // Vector3.Distance의 제곱근 계산 없이 거리를 비교한다.
+    private bool IsWithin(Vector3 target, float range)
+    {
+        return (target - transform.position).sqrMagnitude <= range * range;
+    }
+
+    private void ChangeState(ZombieState next)
+    {
+        GameLogger.Log($"{_state} -> {next}");
+        _state = next;
     }
 
     // 에이전트가 링크 시작점에 도착했으면 점프를 시작한다.
@@ -288,9 +346,8 @@ public class Zombie : MonoBehaviour, IDamageable
         if (!_agent.isOnOffMeshLink) return false;
 
         ZombieState returnState = _state;
-        Debug.Log($"{_state} -> Jump");
         _animator.SetTrigger(_jump);
-        _state = ZombieState.Jump;
+        ChangeState(ZombieState.Jump);
         StartCoroutine(Jump_Coroutine(_agent.currentOffMeshLinkData, returnState));
         return true;
     }
@@ -309,7 +366,7 @@ public class Zombie : MonoBehaviour, IDamageable
         }
 
         // 애니메이션의 준비 동작이 끝날 때까지 제자리에서 기다린다.
-        yield return new WaitForSeconds(_jumpWindupTime);
+        yield return _jumpWindupWait;
 
         float duration = Vector3.Distance(start, end) / _jumpSpeed;
         float t = 0f;
@@ -327,8 +384,7 @@ public class Zombie : MonoBehaviour, IDamageable
 
         _agent.CompleteOffMeshLink(); // 링크 통과 완료 → 에이전트가 다시 경로를 따라 이동한다.
 
-        Debug.Log($"{_state} -> {returnState}");
-        _state = returnState;
+        ChangeState(returnState);
     }
 
     // 공격: 일정 시간마다 플레이어를 때린다.
@@ -336,12 +392,10 @@ public class Zombie : MonoBehaviour, IDamageable
     {
         StopAgent();
         // 플레이어가 공격 사정 거리 밖으로 나가면 쫓아!
-        float distance = Vector3.Distance(transform.position, _player.transform.position);
-        if (distance > _attackRange)
+        if (!IsWithin(_player.position, _attackRange))
         {
-            Debug.Log($"{_state} -> Trace");
             _animator.SetTrigger(_attackToMove);
-            _state = ZombieState.Trace;
+            ChangeState(ZombieState.Trace);
             return;
         }
 
@@ -359,11 +413,11 @@ public class Zombie : MonoBehaviour, IDamageable
         DamageInfo info = new DamageInfo()
         {
             Value = _attackDamage,
-            HitPoint = _player.transform.position,
-            HitNormal = (transform.position - _player.transform.position).normalized,
+            HitPoint = _player.position,
+            HitNormal = (transform.position - _player.position).normalized,
         };
 
-        _player.GetComponent<IDamageable>().TakeDamage(info);
+        _playerDamageable.TakeDamage(info);
     }
 
     private void StopAgent()

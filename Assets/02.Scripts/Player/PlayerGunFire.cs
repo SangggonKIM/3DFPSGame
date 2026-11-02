@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerGunFire : MonoBehaviour
 {
     [SerializeField] private ParticleSystem _hitEffectPrefab;
+    [SerializeField] private int _hitEffectPoolSize = 16; // 동시에 보일 수 있는 피격 이펙트 수
 
     [Header("스탯")]
 
@@ -39,6 +40,14 @@ public class PlayerGunFire : MonoBehaviour
     private int _fire = Animator.StringToHash("Fire");
     private int _moveMotion = Animator.StringToHash("MoveMotion");
     private Player _player;
+    private Transform _cameraTransform;
+
+    private WaitForSeconds _reloadingWait;
+    private WaitForSeconds _flashWait;
+
+    // 피격 이펙트는 미리 만들어 두고 돌려 쓴다. (발사마다 Instantiate/Destroy 하지 않는다)
+    private ParticleSystem[] _hitEffects;
+    private int _nextHitEffectIndex;
 
 
     private void Awake()
@@ -47,12 +56,45 @@ public class PlayerGunFire : MonoBehaviour
         _bulletTrail.positionCount = 2;
         _bulletTrail.useWorldSpace = true;
         _bulletTrail.enabled = false;
+
+        _reloadingWait = new WaitForSeconds(_reloadingTime);
+        _flashWait = new WaitForSeconds(_flashTime);
+
+        CreateHitEffects();
     }
 
     private void Start()
     {
         _animator = GetComponentInChildren<Animator>();
         _player = GetComponent<Player>();
+        _cameraTransform = Camera.main.transform;
+    }
+
+    private void CreateHitEffects()
+    {
+        _hitEffects = new ParticleSystem[_hitEffectPoolSize];
+        for (int i = 0; i < _hitEffectPoolSize; i++)
+        {
+            ParticleSystem effect = Instantiate(_hitEffectPrefab);
+            // 원본은 재생이 끝나면 스스로 파괴(StopAction.Destroy)되므로 재사용할 수 있게 끈다.
+            ParticleSystem.MainModule main = effect.main;
+            main.stopAction = ParticleSystemStopAction.None;
+            main.playOnAwake = false;
+            effect.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+
+            _hitEffects[i] = effect;
+        }
+    }
+
+    private void PlayHitEffect(Vector3 position, Vector3 normal)
+    {
+        ParticleSystem effect = _hitEffects[_nextHitEffectIndex];
+        _nextHitEffectIndex = (_nextHitEffectIndex + 1) % _hitEffects.Length;
+
+        effect.transform.position = position; // 맞은 자리
+        effect.transform.forward = normal; // 수직 위치로 회전
+        effect.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+        effect.Play();
     }
 
     private void Update()
@@ -98,7 +140,7 @@ public class PlayerGunFire : MonoBehaviour
     {
         Debug.Log("재장전 시작!");
 
-        yield return new WaitForSeconds(_reloadingTime);
+        yield return _reloadingWait;
 
         _bulletCount = _maxBulletCount;
         OnBulletFire?.Invoke(_bulletCount, _maxBulletCount);
@@ -110,8 +152,7 @@ public class PlayerGunFire : MonoBehaviour
     {
         StartCoroutine(MuzzleFlash_Coroutine());
         // 2. 레이(광선)를 생성하고 발사될 위치와 진행 방향 설정하기
-        var cameraTransform = Camera.main.transform;
-        var ray = new Ray(cameraTransform.position, cameraTransform.forward);
+        var ray = new Ray(_cameraTransform.position, _cameraTransform.forward);
 
         // 3. 레이가 부딛힌 대상의 정보를 저장할 변수 생성하기
         var hitInfo = new RaycastHit();
@@ -128,10 +169,7 @@ public class PlayerGunFire : MonoBehaviour
             // Debug.Log($"{hitInfo.collider.name}이 총알을 맞았다. 데미지: {_damage}");
 
             // 맞은 자리에 총알 자국 이펙트 만들기
-            var effect = Instantiate(_hitEffectPrefab);
-            effect.transform.position = hitInfo.point; // 맞은 자리
-            effect.transform.forward = hitInfo.normal; // 수직 위치로 회전
-            effect.Play();
+            PlayHitEffect(hitInfo.point, hitInfo.normal);
 
             // 대미지 구조체 만들기
             DamageInfo damageInfo = new DamageInfo();
@@ -153,7 +191,7 @@ public class PlayerGunFire : MonoBehaviour
         GameObject flash = _muzzleFlahes[randomIndex];
         flash.SetActive(true);
 
-        yield return new WaitForSeconds(_flashTime);
+        yield return _flashWait;
 
         flash.SetActive(false);
     }
