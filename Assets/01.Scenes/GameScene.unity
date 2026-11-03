@@ -1094,7 +1094,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 47855347}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1922179133}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: Restart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &47855347
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21638,7 +21650,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1433393261}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1922179133}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: Quit
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1433393261
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24716,7 +24740,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1599064955}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1922179133}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: Resume
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1599064955
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30001,6 +30037,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1915536913}
   m_CullTransparentMesh: 1
+--- !u!114 &1922179133 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -2795574669713631491, guid: 366830202f60f854d87c726ec312087d, type: 3}
+  m_PrefabInstance: {fileID: 4367481296946190343}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a9913fb11a3c1346855e418aa5019a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameManager
 --- !u!1001 &1924744326
 PrefabInstance:
   m_ObjectHideFlags: 0
