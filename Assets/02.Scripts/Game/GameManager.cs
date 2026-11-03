@@ -11,11 +11,9 @@ public enum GameState
     Pause
 }
 
-public class GameManager : MonoBehaviour
+public class GameManager : SingletonBehaviour<GameManager>
 {
     private int _moveMotion = Animator.StringToHash("MoveMotion");
-    private static GameManager _instance = null;
-    public static GameManager Instance => _instance;
 
     private GameState _state = GameState.Ready;
     public GameState State => _state;
@@ -23,17 +21,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _stateText;
     [SerializeField] private Animator _playerAnimator;
     [SerializeField] private GameObject _optionPopup;
-
-    private void Awake()
-    {
-        if (_instance != null)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        _instance = this;
-    }
 
     private void Start()
     {

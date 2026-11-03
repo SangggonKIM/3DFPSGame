@@ -2,20 +2,12 @@ using System;
 using UnityEngine;
 
 // 마우스 커서를 화면 가운데에 잠그고 숨긴다.
-public class CursorManager : MonoBehaviour
+public class CursorManager : SingletonBehaviour<CursorManager>
 {
-    private static CursorManager _instance = null;
-    public static CursorManager Instance => _instance;
-
-    private void Awake()
+    protected override void Awake()
     {
-        if (_instance != null)
-        {
-            Destroy(gameObject);
-            return;
-        }
+        base.Awake();
 
-        _instance = this;
         LockCursor();
     }
 
