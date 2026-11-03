@@ -14,17 +14,18 @@ public class UIInputFieldFeel : MonoBehaviour
     [Header("Background")]
     [Tooltip("비워두면 InputField의 Target Graphic을 사용한다.")]
     [SerializeField] private Graphic _background;
-    [SerializeField] private Color _focusBackgroundColor = new Color(1f, 0.98f, 0.93f, 1f);
+    [SerializeField] private Color _focusBackgroundColor = new Color(0f, 0f, 0f, 0.75f);
 
     [Header("Border")]
-    [SerializeField] private Outline _outline;
-    [SerializeField] private Color _focusOutlineColor = new Color(1f, 0.78f, 0.1f, 1f);
+    [Tooltip("테두리 역할을 하는 Graphic (테두리 이미지, Outline 효과가 붙은 Graphic 등)")]
+    [SerializeField] private Graphic _border;
+    [SerializeField] private Color _focusBorderColor = new Color(0.85f, 0.12f, 0.1f, 1f);
 
     private TMP_InputField _inputField;
     private RectTransform _rectTransform;
     private Vector3 _baseScale;
     private Color _baseBackgroundColor;
-    private Color _baseOutlineColor;
+    private Color _baseBorderColor;
 
     private float _focus; // 0 = 기본, 1 = 포커스
     private Coroutine _routine;
@@ -36,9 +37,8 @@ public class UIInputFieldFeel : MonoBehaviour
         _baseScale = _rectTransform.localScale;
 
         if (_background == null) _background = _inputField.targetGraphic;
-        if (_outline == null) _outline = GetComponent<Outline>();
         if (_background != null) _baseBackgroundColor = _background.color;
-        if (_outline != null) _baseOutlineColor = _outline.effectColor;
+        if (_border != null) _baseBorderColor = _border.color;
     }
 
     private void OnEnable()
@@ -104,6 +104,6 @@ public class UIInputFieldFeel : MonoBehaviour
 
         _rectTransform.localScale = _baseScale * Mathf.Lerp(1f, _focusScale, focus);
         if (_background != null) _background.color = Color.Lerp(_baseBackgroundColor, _focusBackgroundColor, focus);
-        if (_outline != null) _outline.effectColor = Color.Lerp(_baseOutlineColor, _focusOutlineColor, focus);
+        if (_border != null) _border.color = Color.Lerp(_baseBorderColor, _focusBorderColor, focus);
     }
 }
