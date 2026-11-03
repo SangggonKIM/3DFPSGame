@@ -22,10 +22,12 @@ public class GameManager : SingletonBehaviour<GameManager>
     [SerializeField] private TextMeshProUGUI _stateText;
     [SerializeField] private Animator _playerAnimator;
     [SerializeField] private GameObject _optionPopup;
+    [SerializeField] private GameObject _gameOverPopup;
 
     private void Start()
     {
         _optionPopup.SetActive(false);
+        _gameOverPopup.SetActive(false);
         _state = GameState.Ready;
         StartCoroutine(StartSequence_Coroutine());
     }
@@ -64,11 +66,10 @@ public class GameManager : SingletonBehaviour<GameManager>
     {
         _state = GameState.GameOver;
 
-        _stateText.gameObject.SetActive(true);
-        _stateText.text = "게임오버";
-        _stateText.color = Color.red;
-
         _playerAnimator.SetFloat(_moveMotion, 0f);
+
+        _gameOverPopup.SetActive(true);
+        CursorManager.Instance.UnlockCursor();
     }
 
     // 계속하기
