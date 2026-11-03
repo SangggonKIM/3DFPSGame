@@ -151,12 +151,12 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 16.66243, y: 3.6072338, z: 7.2465353}
-  m_Center: {x: 2.0952063, y: 1.3036171, z: -0.2511077}
+  m_Size: {x: 10.048093, y: 3.6072338, z: 7.2465353}
+  m_Center: {x: -1.2119622, y: 1.3036171, z: -0.2511077}
 --- !u!4 &18541889
 Transform:
   m_ObjectHideFlags: 0
@@ -166,7 +166,7 @@ Transform:
   m_GameObject: {fileID: 18541887}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.56, y: 0, z: -7.29}
+  m_LocalPosition: {x: 6.62, y: 0, z: -7.29}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -799,15 +799,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2820317186406022081, guid: 7a5d9ef710131d143ab0df874d85c484, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 14
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 2820317186406022081, guid: 7a5d9ef710131d143ab0df874d85c484, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.975
+      value: 0.95011705
       objectReference: {fileID: 0}
     - target: {fileID: 2820317186406022081, guid: 7a5d9ef710131d143ab0df874d85c484, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -9.5
+      value: -6.8
       objectReference: {fileID: 0}
     - target: {fileID: 2820317186406022081, guid: 7a5d9ef710131d143ab0df874d85c484, type: 3}
       propertyPath: m_LocalRotation.w
@@ -840,7 +840,7 @@ PrefabInstance:
     - target: {fileID: 3766678397106089393, guid: 7a5d9ef710131d143ab0df874d85c484, type: 3}
       propertyPath: _moveArea
       value: 
-      objectReference: {fileID: 2134616724}
+      objectReference: {fileID: 18541888}
     - target: {fileID: 8220809855277814943, guid: 7a5d9ef710131d143ab0df874d85c484, type: 3}
       propertyPath: m_Name
       value: LoginZombie (3)
@@ -3608,11 +3608,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2820317186406022081, guid: 7a5d9ef710131d143ab0df874d85c484, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7
+      value: 3.5
       objectReference: {fileID: 0}
     - target: {fileID: 2820317186406022081, guid: 7a5d9ef710131d143ab0df874d85c484, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.9428806
+      value: 0.975
       objectReference: {fileID: 0}
     - target: {fileID: 2820317186406022081, guid: 7a5d9ef710131d143ab0df874d85c484, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3649,7 +3649,7 @@ PrefabInstance:
     - target: {fileID: 3766678397106089393, guid: 7a5d9ef710131d143ab0df874d85c484, type: 3}
       propertyPath: _moveArea
       value: 
-      objectReference: {fileID: 2134616724}
+      objectReference: {fileID: 18541888}
     - target: {fileID: 3766678397106089393, guid: 7a5d9ef710131d143ab0df874d85c484, type: 3}
       propertyPath: _wanderRadius
       value: 2.5
@@ -6562,15 +6562,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2820317186406022081, guid: 7a5d9ef710131d143ab0df874d85c484, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6
+      value: 8.7
       objectReference: {fileID: 0}
     - target: {fileID: 2820317186406022081, guid: 7a5d9ef710131d143ab0df874d85c484, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.1333886
+      value: 0.9741909
       objectReference: {fileID: 0}
     - target: {fileID: 2820317186406022081, guid: 7a5d9ef710131d143ab0df874d85c484, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -11
+      value: -10.2
       objectReference: {fileID: 0}
     - target: {fileID: 2820317186406022081, guid: 7a5d9ef710131d143ab0df874d85c484, type: 3}
       propertyPath: m_LocalRotation.w
@@ -6603,7 +6603,7 @@ PrefabInstance:
     - target: {fileID: 3766678397106089393, guid: 7a5d9ef710131d143ab0df874d85c484, type: 3}
       propertyPath: _moveArea
       value: 
-      objectReference: {fileID: 2134616724}
+      objectReference: {fileID: 18541888}
     - target: {fileID: 3766678397106089393, guid: 7a5d9ef710131d143ab0df874d85c484, type: 3}
       propertyPath: _wanderRadius
       value: 2.5
@@ -7043,15 +7043,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2820317186406022081, guid: 7a5d9ef710131d143ab0df874d85c484, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 17
+      value: 9.6
       objectReference: {fileID: 0}
     - target: {fileID: 2820317186406022081, guid: 7a5d9ef710131d143ab0df874d85c484, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.1387429
+      value: 0.9509779
       objectReference: {fileID: 0}
     - target: {fileID: 2820317186406022081, guid: 7a5d9ef710131d143ab0df874d85c484, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -7
+      value: -5.4
       objectReference: {fileID: 0}
     - target: {fileID: 2820317186406022081, guid: 7a5d9ef710131d143ab0df874d85c484, type: 3}
       propertyPath: m_LocalRotation.w
@@ -7084,7 +7084,7 @@ PrefabInstance:
     - target: {fileID: 3766678397106089393, guid: 7a5d9ef710131d143ab0df874d85c484, type: 3}
       propertyPath: _moveArea
       value: 
-      objectReference: {fileID: 2134616724}
+      objectReference: {fileID: 18541888}
     - target: {fileID: 8220809855277814943, guid: 7a5d9ef710131d143ab0df874d85c484, type: 3}
       propertyPath: m_Name
       value: LoginZombie (5)
@@ -8657,7 +8657,7 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
@@ -10664,7 +10664,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2820317186406022081, guid: 7a5d9ef710131d143ab0df874d85c484, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 12
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2820317186406022081, guid: 7a5d9ef710131d143ab0df874d85c484, type: 3}
       propertyPath: m_LocalPosition.y
@@ -10672,7 +10672,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2820317186406022081, guid: 7a5d9ef710131d143ab0df874d85c484, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -6.5
+      value: -9.8
       objectReference: {fileID: 0}
     - target: {fileID: 2820317186406022081, guid: 7a5d9ef710131d143ab0df874d85c484, type: 3}
       propertyPath: m_LocalRotation.w
@@ -10705,7 +10705,7 @@ PrefabInstance:
     - target: {fileID: 3766678397106089393, guid: 7a5d9ef710131d143ab0df874d85c484, type: 3}
       propertyPath: _moveArea
       value: 
-      objectReference: {fileID: 2134616724}
+      objectReference: {fileID: 18541888}
     - target: {fileID: 8220809855277814943, guid: 7a5d9ef710131d143ab0df874d85c484, type: 3}
       propertyPath: m_Name
       value: LoginZombie (2)
@@ -15532,7 +15532,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4000011416029138, guid: 845bb3e01ad4efe44adb29f965b2150b, type: 3}
   m_PrefabInstance: {fileID: 2126205541}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &2134616723
+--- !u!1 &2135656363
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -15540,46 +15540,42 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2134616725}
-  - component: {fileID: 2134616724}
-  m_Layer: 2
-  m_Name: MoveArea
+  - component: {fileID: 2135656365}
+  - component: {fileID: 2135656364}
+  m_Layer: 0
+  m_Name: Login Global Volume
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!65 &2134616724
-BoxCollider:
+--- !u!114 &2135656364
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2134616723}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
+  m_GameObject: {fileID: 2135656363}
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 14, y: 2, z: 7}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!4 &2134616725
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.RenderPipelines.Core.Runtime::UnityEngine.Rendering.Volume
+  m_IsGlobal: 1
+  priority: 0
+  blendDistance: 0
+  weight: 1
+  sharedProfile: {fileID: 11400000, guid: cfcc93abf411cdd419ae258acffcd3d5, type: 2}
+--- !u!4 &2135656365
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2134616723}
+  m_GameObject: {fileID: 2135656363}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 13, y: 1, z: -8}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -15937,4 +15933,4 @@ SceneRoots:
   - {fileID: 1789550589}
   - {fileID: 663752141}
   - {fileID: 18541889}
-  - {fileID: 2134616725}
+  - {fileID: 2135656365}
