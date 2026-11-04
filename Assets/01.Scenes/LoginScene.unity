@@ -2707,7 +2707,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 418686398}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
@@ -5311,7 +5311,7 @@ MonoBehaviour:
   m_CaretColor: {r: 1, g: 1, b: 1, a: 1}
   m_CustomCaretColor: 1
   m_SelectionColor: {r: 0.8, g: 0.1, b: 0.1, a: 0.5}
-  m_Text: 
+  m_Text: ababba@ab.com
   m_CaretBlinkRate: 0.85
   m_CaretWidth: 1
   m_ReadOnly: 0
@@ -5562,7 +5562,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u200B"
+  m_text: "************\u200B"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5ea12f8fb384ff04db62eb8da2efb681, type: 2}
   m_sharedMaterial: {fileID: -586175648601118253, guid: 5ea12f8fb384ff04db62eb8da2efb681, type: 2}
@@ -6989,7 +6989,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 946712823}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
@@ -7741,7 +7741,7 @@ MonoBehaviour:
   m_CaretColor: {r: 1, g: 1, b: 1, a: 1}
   m_CustomCaretColor: 1
   m_SelectionColor: {r: 0.8, g: 0.1, b: 0.1, a: 0.5}
-  m_Text: 
+  m_Text: KoreaLol12!@
   m_CaretBlinkRate: 0.85
   m_CaretWidth: 1
   m_ReadOnly: 0
@@ -9853,7 +9853,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u200B"
+  m_text: "ababba@ab.com\u200B"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5ea12f8fb384ff04db62eb8da2efb681, type: 2}
   m_sharedMaterial: {fileID: -586175648601118253, guid: 5ea12f8fb384ff04db62eb8da2efb681, type: 2}
