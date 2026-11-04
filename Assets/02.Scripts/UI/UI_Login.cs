@@ -33,6 +33,14 @@ public class UI_Login : MonoBehaviour
     [SerializeField] private GameObject _loginGroup;
     [SerializeField] private string _gameSceneName = "GameScene"; // 로그인하면 불러올 씬
 
+    // ID: 이메일 (로컬부@도메인.최상위도메인 2글자 이상)
+    private static readonly Regex EmailRegex =
+        new Regex(@"^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$");
+
+    // 비밀번호: 대문자, 소문자, 숫자, 기호를 각각 하나 이상 포함한 8~30글자 (공백 제외 ASCII)
+    private static readonly Regex PasswordRegex =
+        new Regex(@"^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[^A-Za-z0-9])[\x21-\x7E]{8,30}$");
+
     private Mode _mode = Mode.Login;
 
     private PlayerPrefsAccountRepository _repository = new PlayerPrefsAccountRepository();
@@ -112,18 +120,13 @@ public class UI_Login : MonoBehaviour
             return;
         }
 
-        // ID: 이메일
-        bool isEmail = Regex.IsMatch(id, @"^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$");
-        if (!isEmail)
+        if (!EmailRegex.IsMatch(id))
         {
             _messageText.text = "아이디는 이메일 형식이어야 합니다.";
             return;
         }
 
-        // 비밀번호: 대문자 소문자 숫자 기호를 포함한 8~30 글자 (공백 제외 ASCII)
-        bool isValidPassword = Regex.IsMatch(password,
-            @"^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[^A-Za-z0-9])[\x21-\x7E]{8,30}$");
-        if (!isValidPassword)
+        if (!PasswordRegex.IsMatch(password))
         {
             _messageText.text = "비밀번호는 대문자, 소문자, 숫자, 기호를 모두 포함한 8~30글자여야 합니다.";
             return;
