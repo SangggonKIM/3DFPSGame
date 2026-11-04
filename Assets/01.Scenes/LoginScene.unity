@@ -9013,13 +9013,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1111065458}
-        m_TargetAssemblyTypeName: LoginManager, Assembly-CSharp
-        m_MethodName: OnClickLogin
-        m_Mode: 0
+      - m_Target: {fileID: 1495683990}
+        m_TargetAssemblyTypeName: UI_Login, Assembly-CSharp
+        m_MethodName: Login
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -11249,6 +11249,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1495683988}
   - component: {fileID: 1495683989}
+  - component: {fileID: 1495683990}
   m_Layer: 5
   m_Name: ButtonGroup
   m_TagString: Untagged
@@ -11289,6 +11290,27 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &1495683990
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1495683987}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f732091ec0a31bf469afb4e894b77505, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UI_Login
+  _idInput: {fileID: 782929314}
+  _passwordInput: {fileID: 1095272567}
+  _passwordConfirmInput: {fileID: 0}
+  _loginButton: {fileID: 1183039698}
+  _gotoRegisterButton: {fileID: 0}
+  _registerButton: {fileID: 0}
+  _gotoLoginButton: {fileID: 0}
+  _messageText: {fileID: 0}
+  _gameSceneName: GameScene
 --- !u!1001 &1502479099
 PrefabInstance:
   m_ObjectHideFlags: 0
