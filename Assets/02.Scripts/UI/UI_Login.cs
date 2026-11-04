@@ -30,7 +30,6 @@ public class UI_Login : MonoBehaviour
     [Header("기타")]
 
     [SerializeField] private TextMeshProUGUI _messageText; // 안내 글자
-    [SerializeField] private GameObject _loginGroup;
     [SerializeField] private string _gameSceneName = "GameScene"; // 로그인하면 불러올 씬
 
     private Mode _mode = Mode.Login;
@@ -48,14 +47,13 @@ public class UI_Login : MonoBehaviour
     {
         bool isLoginMode = _mode == Mode.Login;
 
-        _passwordConfirmInput.transform.parent.gameObject.SetActive(!isLoginMode);
+        _passwordConfirmInput.gameObject.SetActive(!isLoginMode);
 
-        _loginButton.transform.parent.gameObject.SetActive(isLoginMode);
-        _gotoRegisterButton.transform.parent.gameObject.SetActive(isLoginMode);
-        _loginGroup.transform.parent.gameObject.SetActive(isLoginMode);
+        _loginButton.gameObject.SetActive(isLoginMode);
+        _gotoRegisterButton.gameObject.SetActive(isLoginMode);
 
-        _registerButton.transform.parent.gameObject.SetActive(!isLoginMode);
-        _gotoLoginButton.transform.parent.gameObject.SetActive(!isLoginMode);
+        _registerButton.gameObject.SetActive(!isLoginMode);
+        _gotoLoginButton.gameObject.SetActive(!isLoginMode);
     }
 
     // 로그인 모드로
@@ -115,13 +113,13 @@ public class UI_Login : MonoBehaviour
             return;
         }
 
-        if (_idSpec.IsSatisfiedBy(id))
+        if (!_idSpec.IsSatisfiedBy(id))
         {
             _messageText.text = _idSpec.ErrorMesage;
             return;
         }
 
-        if (_passwordSpec.IsSatisfiedBy(password))
+        if (!_passwordSpec.IsSatisfiedBy(password))
         {
             _messageText.text = _passwordSpec.ErrorMesage;
             return;
