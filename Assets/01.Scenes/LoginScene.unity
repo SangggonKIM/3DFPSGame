@@ -3559,7 +3559,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 588202324}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 956381717}
+        m_TargetAssemblyTypeName: UI_Login, Assembly-CSharp
+        m_MethodName: Register
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &588202324
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7003,6 +7015,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 956381716}
+  - component: {fileID: 956381717}
   m_Layer: 5
   m_Name: UI_LoginPanel
   m_TagString: Untagged
@@ -7033,6 +7046,28 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &956381717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 956381715}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f732091ec0a31bf469afb4e894b77505, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UI_Login
+  _idInput: {fileID: 782929314}
+  _passwordInput: {fileID: 1095272567}
+  _passwordConfirmInput: {fileID: 1633060444}
+  _loginButton: {fileID: 1183039698}
+  _gotoRegisterButton: {fileID: 1655611930}
+  _registerButton: {fileID: 588202323}
+  _gotoLoginButton: {fileID: 2143949999}
+  _messageText: {fileID: 1878150210}
+  _loginGroup: {fileID: 1495683987}
+  _gameSceneName: GameScene
 --- !u!1001 &977889181
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9013,7 +9048,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1495683990}
+      - m_Target: {fileID: 956381717}
         m_TargetAssemblyTypeName: UI_Login, Assembly-CSharp
         m_MethodName: Login
         m_Mode: 1
@@ -11249,7 +11284,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1495683988}
   - component: {fileID: 1495683989}
-  - component: {fileID: 1495683990}
   m_Layer: 5
   m_Name: ButtonGroup
   m_TagString: Untagged
@@ -11290,27 +11324,6 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
---- !u!114 &1495683990
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1495683987}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f732091ec0a31bf469afb4e894b77505, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::UI_Login
-  _idInput: {fileID: 782929314}
-  _passwordInput: {fileID: 1095272567}
-  _passwordConfirmInput: {fileID: 0}
-  _loginButton: {fileID: 1183039698}
-  _gotoRegisterButton: {fileID: 0}
-  _registerButton: {fileID: 0}
-  _gotoLoginButton: {fileID: 0}
-  _messageText: {fileID: 0}
-  _gameSceneName: GameScene
 --- !u!1001 &1502479099
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12750,7 +12763,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1655611931}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 956381717}
+        m_TargetAssemblyTypeName: UI_Login, Assembly-CSharp
+        m_MethodName: GotoRegister
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1655611931
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15755,7 +15780,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2143950000}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 956381717}
+        m_TargetAssemblyTypeName: UI_Login, Assembly-CSharp
+        m_MethodName: GotoLogin
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2143950000
 MonoBehaviour:
   m_ObjectHideFlags: 0
