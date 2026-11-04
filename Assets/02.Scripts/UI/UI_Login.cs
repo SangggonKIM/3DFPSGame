@@ -1,4 +1,5 @@
 using System;
+using System.Text.RegularExpressions;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -33,6 +34,8 @@ public class UI_Login : MonoBehaviour
     [SerializeField] private string _gameSceneName = "GameScene"; // 로그인하면 불러올 씬
 
     private Mode _mode = Mode.Login;
+
+    private PlayerPrefsAccountRepository _repository = new PlayerPrefsAccountRepository();
 
     private void Start()
     {
@@ -79,7 +82,15 @@ public class UI_Login : MonoBehaviour
             return;
         }
 
-        SceneManager.LoadScene("GameScene");
+        if (_repository.CheckPassword(id, password))
+        {
+            SceneManager.LoadScene("GameScene");
+        }
+        else
+        {
+            _messageText.text = "아이디와 비밀번호를 확인해주세요.";
+            return;
+        }
     }
 
     public void Register()
@@ -88,17 +99,33 @@ public class UI_Login : MonoBehaviour
         string password = _passwordInput.text;
         string passwordConfirm = _passwordConfirmInput.text;
 
-        // Todo: ID, (닉네임)와 비밀번호 규칙
-        // ID: 이메일
-        // 비밀번호: 영어만 되며 특수문자 대문자 하나 이상을 포함한 7~15글자
-        // 규칙이 여기서만 쓰일까?
-        // 정리 과제
-        //  - 정규표현식
-        //  - 명세 패턴
+        // 정규표현식(정규식)
+        // 문자열에서 특정한 규칙이나 패턴을 찾기 위해 사용하는 문법
+        // - 데이터 검증(이메일 형식, 주민번호 형식, 비밀번호 형식)
+        // - 문자열 검색(ToDo라는게 있나?, 한국어가 있나?)
+        // - 문자열 치환(규칙에 맞는 문자열을 찾아서 다른 문자열로 변경)
+        // - 웹 크롤링 & 파싱
 
         if (string.IsNullOrEmpty(id) || string.IsNullOrEmpty(password))
         {
             _messageText.text = "아이디와 비밀번호를 입력해주세요.";
+            return;
+        }
+
+        // ID: 이메일
+        bool isEmail = Regex.IsMatch(id, @"^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$");
+        if (!isEmail)
+        {
+            _messageText.text = "아이디는 이메일 형식이어야 합니다.";
+            return;
+        }
+
+        // 비밀번호: 대문자 소문자 숫자 기호를 포함한 8~30 글자 (공백 제외 ASCII)
+        bool isValidPassword = Regex.IsMatch(password,
+            @"^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[^A-Za-z0-9])[\x21-\x7E]{8,30}$");
+        if (!isValidPassword)
+        {
+            _messageText.text = "비밀번호는 대문자, 소문자, 숫자, 기호를 모두 포함한 8~30글자여야 합니다.";
             return;
         }
 
@@ -109,7 +136,16 @@ public class UI_Login : MonoBehaviour
         }
 
         // Todo: 중복 ID 검사
+        if (_repository.Exists(id))
+        {
+            _messageText.text = "이미 존재하는 아이디입니다.";
+            return;
+        }
+
         // Todo: 실제 회원가입 데이터 저장
+        _repository.Register(id, password);
+        // PlayerPrefs
+
         GotoLogin();
         _messageText.text = "가입 했습니다. 로그인 해주세요.";
     }
