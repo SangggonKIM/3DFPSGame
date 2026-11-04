@@ -625,6 +625,7 @@ GameObject:
   - component: {fileID: 1015036150}
   - component: {fileID: 1015036149}
   - component: {fileID: 1015036148}
+  - component: {fileID: 1015036152}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -718,6 +719,23 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1015036152
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1015036147}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19ffde3ee5343294cb704f46d0cfc039, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UI_Loading
+  _progressSlider: {fileID: 1472574564}
+  _progressText: {fileID: 1879597576}
+  _fillSpeed: 0.5
+  _completeDelay: 0.3
+  _defaultSceneName: GameScene
 --- !u!1 &1472574562
 GameObject:
   m_ObjectHideFlags: 0
